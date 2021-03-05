@@ -1,3 +1,5 @@
+# rename the file my.cnf
+# modify value according to your config
 [client]
 database = analychess
 user = root
