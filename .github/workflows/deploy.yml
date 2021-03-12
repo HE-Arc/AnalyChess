@@ -34,7 +34,7 @@ jobs:
 
       - name: Add know Host
         run: |
-          ssh-keyscan -p ${{ secrets.DEPLOY_HOST_SSH_PORT }} ${{ secrets.DEPLOY_HOST }} >> /home/poweruser/.ssh/known_hosts
+          ssh-keyscan -p ${{ secrets.DEPLOY_HOST_SSH_PORT }} ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy
         run: |
