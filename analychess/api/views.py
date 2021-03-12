@@ -19,6 +19,7 @@ def api_root(request):
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permissions = [permissions.AllowAny]
     
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -29,11 +30,6 @@ class GameList(generics.ListCreateAPIView):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-        
-
 class GameDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
-    #permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]

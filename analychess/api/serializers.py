@@ -3,7 +3,7 @@ from api.models import Game
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
-    games = serializers.PrimaryKeyRelatedField(many=True, queryset=Game.objects.all())
+    games = serializers.PrimaryKeyRelatedField(many=True, queryset=Game.objects.all(), allow_null=True)
 
     class Meta:
         model = User
