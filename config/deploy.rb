@@ -69,20 +69,18 @@ namespace :python do
     end
 
     desc 'Migrate'
-    task : migrate do
+    task :migrate do
         on roles([:app, :web]) do |h|
             execute "#{venv_path}/bin/python3 /www/AnalyChess/current/analychess/manage.py migrate"
-            end
+        end
     end
 
     desc 'Start server'
-    task start_serv:  do
+    task :start_serv  do
         on roles([:app, :web]) do |h|
             execute "#{venv_path}/bin/python3 /www/AnalyChess/current/analychess/manage.py runserver"
-            end
+        end
     end
-
-
 end
 
 
