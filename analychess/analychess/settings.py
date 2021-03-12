@@ -25,7 +25,7 @@ SECRET_KEY = 'b9yyw#(m67cesvj^=bm7-=-1050w(!8ens-y200r*jv+dxmr_a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['analychess.srvz-webapp.he-arc.ch']
 
 
 # Application definition
