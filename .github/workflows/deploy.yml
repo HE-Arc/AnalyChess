@@ -32,4 +32,9 @@ jobs:
           ssh-private-key: ${{ secrets.PRIV_KEY }}
 
       - name: Add know Host
-        run: ssh-keyscan -p ${{ secrets.DEPLOY_HOST_SSH_PORT }} ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+        run: |
+          ssh-keyscan -p ${{ secrets.DEPLOY_HOST_SSH_PORT }} ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy
+        run: |
+          bunde exec cap production deploy
