@@ -67,20 +67,7 @@ namespace :python do
 	    execute "#{venv_path}/bin/pip install -r #{release_path}/requirements.txt"
         execute "sed -i -e 's/analychess\\/my.cnf/~\\/www\\/config\\/my.cnf/' ~/www/AnalyChess/current/analychess/analychess/settings.py"
         execute "#{venv_path}/bin/python3 ~/www/AnalyChess/current/analychess/manage.py migrate"
-        end
-    end
-
-    desc 'Migrate'
-    task :migrate do
-        on roles([:app, :web]) do |h|
-            execute "#{venv_path}/bin/python3 ~/www/AnalyChess/current/analychess/manage.py migrate"
-        end
-    end
-
-    desc 'Start server'
-    task :start_serv  do
-        on roles([:app, :web]) do |h|
-            execute "#{venv_path}/bin/python3 ~/www/AnalyChess/current/analychess/manage.py runserver"
+        execute "#{venv_path}/bin/python3 ~/www/AnalyChess/current/analychess/manage.py runserver"
         end
     end
 end
