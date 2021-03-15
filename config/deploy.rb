@@ -51,7 +51,7 @@ namespace :uwsgi do
     end
 end
 
-after 'deploy:updating', 'python:create_venv'
+after 'deploy:finished', 'python:create_venv'
 
 namespace :python do
 
@@ -71,14 +71,14 @@ namespace :python do
     desc 'Migrate'
     task :migrate do
         on roles([:app, :web]) do |h|
-            execute "#{venv_path}/bin/python3 /www/AnalyChess/current/analychess/manage.py migrate"
+            execute "#{venv_path}/bin/python3 ~/www/AnalyChess/current/analychess/manage.py migrate"
         end
     end
 
     desc 'Start server'
     task :start_serv  do
         on roles([:app, :web]) do |h|
-            execute "#{venv_path}/bin/python3 /www/AnalyChess/current/analychess/manage.py runserver"
+            execute "#{venv_path}/bin/python3 ~/www/AnalyChess/current/analychess/manage.py runserver"
         end
     end
 end
