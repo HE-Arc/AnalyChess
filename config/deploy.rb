@@ -63,8 +63,10 @@ namespace :python do
     task :create_venv do
         on roles([:app, :web]) do |h|
 	    execute "python3 -m venv #{venv_path}"
-            execute "source #{venv_path}/bin/activate"
+        execute "source #{venv_path}/bin/activate"
 	    execute "#{venv_path}/bin/pip install -r #{release_path}/requirements.txt"
+        execute "sed -i -e 's/analychess\/my.cnf/~\/www\/config\/my.cnf/' ~/www/AnalyChess/current/analychess/analychess/settings.py"
+        execute "#{venv_path}/bin/python3 ~/www/AnalyChess/current/analychess/manage.py migrate"
         end
     end
 

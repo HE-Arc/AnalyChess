@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS' : {
             'init_command': 'SET default_storage_engine=INNODB',
-            'read_default_file': '/home/edouard/Documents/dev/projet/AnalyChess/analychess/analychess/my.cnf',
+            'read_default_file': 'analychess/my.cnf',
         },
     }
 }

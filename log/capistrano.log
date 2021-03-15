@@ -801,3 +801,309 @@ tar: Exiting with failure status due to previous errors
   INFO [d4e86b35] Running /usr/bin/env echo "Branch main (at 08878b98688e6b10181b311e379ff0f6f83c7bfd) deployed as release 20210312110201 by edouard" >> /var/www/AnalyChess/revisions.log as poweruser@srvz-webapp.he-arc.ch
  DEBUG [d4e86b35] Command: cd /var/www/AnalyChess/releases && /usr/bin/env echo "Branch main (at 08878b98688e6b10181b311e379ff0f6f83c7bfd) deployed as release 20210312110201 by edouard" >> /var/www/AnalyChess/revisions.log
   INFO [d4e86b35] Finished in 0.161 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2021-03-15 13:35:34 +0100 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [0fe14d81] Running /usr/bin/env mkdir -p /tmp as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [0fe14d81] Command: /usr/bin/env mkdir -p /tmp
+  INFO [0fe14d81] Finished in 0.506 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-e2dd6a1a7add1e5471a8.sh 0.0%
+  INFO Uploading /tmp/git-ssh-e2dd6a1a7add1e5471a8.sh 100.0%
+  INFO [768bf19e] Running /usr/bin/env chmod 700 /tmp/git-ssh-e2dd6a1a7add1e5471a8.sh as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [768bf19e] Command: /usr/bin/env chmod 700 /tmp/git-ssh-e2dd6a1a7add1e5471a8.sh
+  INFO [768bf19e] Finished in 0.108 seconds with exit status 0 (successful).
+  INFO [3a4d61b6] Running /usr/bin/env git ls-remote git@github.com:HE-Arc/AnalyChess.git HEAD as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [3a4d61b6] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-e2dd6a1a7add1e5471a8.sh" ; /usr/bin/env git ls-remote git@github.com:HE-Arc/AnalyChess.git HEAD )
+ DEBUG [3a4d61b6] 	78b591a8c2f0eed60476e9e1c8ab430085d3d565	HEAD
+  INFO [3a4d61b6] Finished in 1.401 seconds with exit status 0 (successful).
+  INFO [f00a32ff] Running /usr/bin/env mkdir -p /var/www/AnalyChess/shared /var/www/AnalyChess/releases as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [f00a32ff] Command: /usr/bin/env mkdir -p /var/www/AnalyChess/shared /var/www/AnalyChess/releases
+  INFO [f00a32ff] Finished in 0.109 seconds with exit status 0 (successful).
+ DEBUG [047a8692] Running [ -f /var/www/AnalyChess/current/REVISION ] as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [047a8692] Command: [ -f /var/www/AnalyChess/current/REVISION ]
+ DEBUG [047a8692] Finished in 0.110 seconds with exit status 0 (successful).
+ DEBUG [7a008782] Running /usr/bin/env cat /var/www/AnalyChess/current/REVISION 2>/dev/null as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [7a008782] Command: /usr/bin/env cat /var/www/AnalyChess/current/REVISION 2>/dev/null
+ DEBUG [7a008782] 	78b591a8c2f0eed60476e9e1c8ab430085d3d565
+ DEBUG [7a008782] Finished in 0.129 seconds with exit status 0 (successful).
+ DEBUG [5f9b29da] Running [ -f /var/www/AnalyChess/repo/HEAD ] as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [5f9b29da] Command: [ -f /var/www/AnalyChess/repo/HEAD ]
+ DEBUG [5f9b29da] Finished in 0.100 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /var/www/AnalyChess/repo
+ DEBUG [9f800434] Running if test ! -d /var/www/AnalyChess/repo; then echo "Directory does not exist '/var/www/AnalyChess/repo'" 1>&2; false; fi as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [9f800434] Command: if test ! -d /var/www/AnalyChess/repo; then echo "Directory does not exist '/var/www/AnalyChess/repo'" 1>&2; false; fi
+ DEBUG [9f800434] Finished in 0.094 seconds with exit status 0 (successful).
+  INFO [6d061a78] Running /usr/bin/env git remote set-url origin git@github.com:HE-Arc/AnalyChess.git as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [6d061a78] Command: cd /var/www/AnalyChess/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-e2dd6a1a7add1e5471a8.sh" ; /usr/bin/env git remote set-url origin git@github.com:HE-Arc/AnalyChess.git )
+  INFO [6d061a78] Finished in 0.114 seconds with exit status 0 (successful).
+  INFO [e73ccbbd] Running /usr/bin/env git remote update --prune as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [e73ccbbd] Command: cd /var/www/AnalyChess/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-e2dd6a1a7add1e5471a8.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [e73ccbbd] 	Fetching origin
+  INFO [e73ccbbd] Finished in 1.362 seconds with exit status 0 (successful).
+ DEBUG [82e62722] Running if test ! -d /var/www/AnalyChess/repo; then echo "Directory does not exist '/var/www/AnalyChess/repo'" 1>&2; false; fi as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [82e62722] Command: if test ! -d /var/www/AnalyChess/repo; then echo "Directory does not exist '/var/www/AnalyChess/repo'" 1>&2; false; fi
+ DEBUG [82e62722] Finished in 0.102 seconds with exit status 0 (successful).
+  INFO [eceaaf11] Running /usr/bin/env mkdir -p /var/www/AnalyChess/releases/20210315123536 as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [eceaaf11] Command: cd /var/www/AnalyChess/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-e2dd6a1a7add1e5471a8.sh" ; /usr/bin/env mkdir -p /var/www/AnalyChess/releases/20210315123536 )
+  INFO [eceaaf11] Finished in 0.108 seconds with exit status 0 (successful).
+  INFO [940e7fcb] Running /usr/bin/env git archive main | /usr/bin/env tar -x -f - -C /var/www/AnalyChess/releases/20210315123536 as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [940e7fcb] Command: cd /var/www/AnalyChess/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-e2dd6a1a7add1e5471a8.sh" ; /usr/bin/env git archive main | /usr/bin/env tar -x -f - -C /var/www/AnalyChess/releases/20210315123536 )
+  INFO [940e7fcb] Finished in 0.142 seconds with exit status 0 (successful).
+ DEBUG [cf0ed62d] Running if test ! -d /var/www/AnalyChess/repo; then echo "Directory does not exist '/var/www/AnalyChess/repo'" 1>&2; false; fi as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [cf0ed62d] Command: if test ! -d /var/www/AnalyChess/repo; then echo "Directory does not exist '/var/www/AnalyChess/repo'" 1>&2; false; fi
+ DEBUG [cf0ed62d] Finished in 0.094 seconds with exit status 0 (successful).
+ DEBUG [cca0695c] Running /usr/bin/env git rev-list --max-count=1 main as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [cca0695c] Command: cd /var/www/AnalyChess/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-e2dd6a1a7add1e5471a8.sh" ; /usr/bin/env git rev-list --max-count=1 main )
+ DEBUG [cca0695c] 	78b591a8c2f0eed60476e9e1c8ab430085d3d565
+ DEBUG [cca0695c] Finished in 0.117 seconds with exit status 0 (successful).
+ DEBUG [b0dcd5e5] Running if test ! -d /var/www/AnalyChess/releases/20210315123536; then echo "Directory does not exist '/var/www/AnalyChess/releases/20210315123536'" 1>&2; false; fi as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [b0dcd5e5] Command: if test ! -d /var/www/AnalyChess/releases/20210315123536; then echo "Directory does not exist '/var/www/AnalyChess/releases/20210315123536'" 1>&2; false; fi
+ DEBUG [b0dcd5e5] Finished in 0.104 seconds with exit status 0 (successful).
+  INFO [281a9ae8] Running /usr/bin/env echo "78b591a8c2f0eed60476e9e1c8ab430085d3d565" > REVISION as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [281a9ae8] Command: cd /var/www/AnalyChess/releases/20210315123536 && /usr/bin/env echo "78b591a8c2f0eed60476e9e1c8ab430085d3d565" > REVISION
+  INFO [281a9ae8] Finished in 0.117 seconds with exit status 0 (successful).
+  INFO [dbd3a439] Running /usr/bin/env ln -s /var/www/AnalyChess/releases/20210315123536 /var/www/AnalyChess/releases/current as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [dbd3a439] Command: /usr/bin/env ln -s /var/www/AnalyChess/releases/20210315123536 /var/www/AnalyChess/releases/current
+  INFO [dbd3a439] Finished in 0.104 seconds with exit status 0 (successful).
+  INFO [c089e3e1] Running /usr/bin/env mv /var/www/AnalyChess/releases/current /var/www/AnalyChess as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [c089e3e1] Command: /usr/bin/env mv /var/www/AnalyChess/releases/current /var/www/AnalyChess
+  INFO [c089e3e1] Finished in 0.112 seconds with exit status 0 (successful).
+  INFO [aaea5eb1] Running /usr/bin/env sudo sv reload uwsgi as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [aaea5eb1] Command: /usr/bin/env sudo sv reload uwsgi
+ DEBUG [aaea5eb1] 	ok: down: uwsgi: 1s, normally up, want up
+  INFO [aaea5eb1] Finished in 0.138 seconds with exit status 0 (successful).
+ DEBUG [c984462d] Running /usr/bin/env ls -x /var/www/AnalyChess/releases as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [c984462d] Command: /usr/bin/env ls -x /var/www/AnalyChess/releases
+ DEBUG [c984462d] 	20210312105119	20210312110201	20210312110818	20210312113105	20210315123257
+20210315123536
+ DEBUG [c984462d] Finished in 0.104 seconds with exit status 0 (successful).
+  INFO Keeping 5 of 6 deployed releases on srvz-webapp.he-arc.ch
+ DEBUG [3ff5fee0] Running [ -d /var/www/AnalyChess/current ] as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [3ff5fee0] Command: [ -d /var/www/AnalyChess/current ]
+ DEBUG [3ff5fee0] Finished in 0.105 seconds with exit status 0 (successful).
+ DEBUG [4aa36e1e] Running /usr/bin/env readlink /var/www/AnalyChess/current as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [4aa36e1e] Command: /usr/bin/env readlink /var/www/AnalyChess/current
+ DEBUG [4aa36e1e] 	/var/www/AnalyChess/releases/20210315123536
+ DEBUG [4aa36e1e] Finished in 0.110 seconds with exit status 0 (successful).
+  INFO [3bf2d508] Running /usr/bin/env rm -rf /var/www/AnalyChess/releases/20210312105119 as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [3bf2d508] Command: /usr/bin/env rm -rf /var/www/AnalyChess/releases/20210312105119
+  INFO [3bf2d508] Finished in 0.112 seconds with exit status 0 (successful).
+ DEBUG [5fff406d] Running if test ! -d /var/www/AnalyChess/releases; then echo "Directory does not exist '/var/www/AnalyChess/releases'" 1>&2; false; fi as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [5fff406d] Command: if test ! -d /var/www/AnalyChess/releases; then echo "Directory does not exist '/var/www/AnalyChess/releases'" 1>&2; false; fi
+ DEBUG [5fff406d] Finished in 0.103 seconds with exit status 0 (successful).
+  INFO [f870464e] Running /usr/bin/env echo "Branch main (at 78b591a8c2f0eed60476e9e1c8ab430085d3d565) deployed as release 20210315123536 by edouard" >> /var/www/AnalyChess/revisions.log as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [f870464e] Command: cd /var/www/AnalyChess/releases && /usr/bin/env echo "Branch main (at 78b591a8c2f0eed60476e9e1c8ab430085d3d565) deployed as release 20210315123536 by edouard" >> /var/www/AnalyChess/revisions.log
+  INFO [f870464e] Finished in 0.121 seconds with exit status 0 (successful).
+  INFO [67e48ab0] Running python3 -m venv /var/www/AnalyChess/shared/env as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [67e48ab0] Command: python3 -m venv /var/www/AnalyChess/shared/env
+  INFO [67e48ab0] Finished in 1.574 seconds with exit status 0 (successful).
+  INFO [5b20561c] Running source /var/www/AnalyChess/shared/env/bin/activate as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [5b20561c] Command: source /var/www/AnalyChess/shared/env/bin/activate
+  INFO [5b20561c] Finished in 0.123 seconds with exit status 0 (successful).
+  INFO [707b0f89] Running /var/www/AnalyChess/shared/env/bin/pip install -r /var/www/AnalyChess/releases/20210315123536/requirements.txt as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [707b0f89] Command: /var/www/AnalyChess/shared/env/bin/pip install -r /var/www/AnalyChess/releases/20210315123536/requirements.txt
+ DEBUG [707b0f89] 	Requirement already satisfied: wheel in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123536/requirements.txt (line 1)) (0.36.2)
+ DEBUG [707b0f89] 	Requirement already satisfied: asgiref in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123536/requirements.txt (line 2)) (3.3.1)
+ DEBUG [707b0f89] 	Requirement already satisfied: certifi==2020.12.5 in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123536/requirements.txt (line 3)) (2020.12.5)
+ DEBUG [707b0f89] 	Requirement already satisfied: Django in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123536/requirements.txt (line 4)) (3.1.7)
+ DEBUG [707b0f89] 	Requirement already satisfied: django-debug-toolbar==3.2 in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123536/requirements.txt (line 5)) (3.2)
+ DEBUG [707b0f89] 	Requirement already satisfied: djangorestframework==3.12.2 in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123536/requirements.txt (line 6)) (3.12.2)
+ DEBUG [707b0f89] 	Requirement already satisfied: mysqlclient in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123536/requirements.txt (line 7)) (2.0.3)
+ DEBUG [707b0f89] 	Requirement already satisfied: psycopg2 in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123536/requirements.txt (line 8)) (2.8.6)
+ DEBUG [707b0f89] 	Requirement already satisfied: pytz in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123536/requirements.txt (line 9)) (2021.1)
+ DEBUG [707b0f89] 	Requirement already satisfied: sqlparse in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123536/requirements.txt (line 10)) (0.4.1)
+  INFO [707b0f89] Finished in 1.226 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2021-03-15 13:36:35 +0100 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [7ee66fa9] Running /usr/bin/env mkdir -p /tmp as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [7ee66fa9] Command: /usr/bin/env mkdir -p /tmp
+  INFO [7ee66fa9] Finished in 0.568 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-5701175866d02b91d8b9.sh 0.0%
+  INFO Uploading /tmp/git-ssh-5701175866d02b91d8b9.sh 100.0%
+  INFO [f1769d37] Running /usr/bin/env chmod 700 /tmp/git-ssh-5701175866d02b91d8b9.sh as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [f1769d37] Command: /usr/bin/env chmod 700 /tmp/git-ssh-5701175866d02b91d8b9.sh
+  INFO [f1769d37] Finished in 0.107 seconds with exit status 0 (successful).
+  INFO [f9adaf7d] Running /usr/bin/env git ls-remote git@github.com:HE-Arc/AnalyChess.git HEAD as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [f9adaf7d] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-5701175866d02b91d8b9.sh" ; /usr/bin/env git ls-remote git@github.com:HE-Arc/AnalyChess.git HEAD )
+ DEBUG [f9adaf7d] 	78b591a8c2f0eed60476e9e1c8ab430085d3d565	HEAD
+  INFO [f9adaf7d] Finished in 1.338 seconds with exit status 0 (successful).
+  INFO [a6792859] Running /usr/bin/env mkdir -p /var/www/AnalyChess/shared /var/www/AnalyChess/releases as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [a6792859] Command: /usr/bin/env mkdir -p /var/www/AnalyChess/shared /var/www/AnalyChess/releases
+  INFO [a6792859] Finished in 0.112 seconds with exit status 0 (successful).
+ DEBUG [861da6f7] Running [ -f /var/www/AnalyChess/current/REVISION ] as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [861da6f7] Command: [ -f /var/www/AnalyChess/current/REVISION ]
+ DEBUG [861da6f7] Finished in 0.100 seconds with exit status 0 (successful).
+ DEBUG [15d5fd63] Running /usr/bin/env cat /var/www/AnalyChess/current/REVISION 2>/dev/null as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [15d5fd63] Command: /usr/bin/env cat /var/www/AnalyChess/current/REVISION 2>/dev/null
+ DEBUG [15d5fd63] 	78b591a8c2f0eed60476e9e1c8ab430085d3d565
+ DEBUG [15d5fd63] Finished in 0.117 seconds with exit status 0 (successful).
+ DEBUG [e32c1775] Running [ -f /var/www/AnalyChess/repo/HEAD ] as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [e32c1775] Command: [ -f /var/www/AnalyChess/repo/HEAD ]
+ DEBUG [e32c1775] Finished in 0.101 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /var/www/AnalyChess/repo
+ DEBUG [b8c32b09] Running if test ! -d /var/www/AnalyChess/repo; then echo "Directory does not exist '/var/www/AnalyChess/repo'" 1>&2; false; fi as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [b8c32b09] Command: if test ! -d /var/www/AnalyChess/repo; then echo "Directory does not exist '/var/www/AnalyChess/repo'" 1>&2; false; fi
+ DEBUG [b8c32b09] Finished in 0.107 seconds with exit status 0 (successful).
+  INFO [510b186a] Running /usr/bin/env git remote set-url origin git@github.com:HE-Arc/AnalyChess.git as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [510b186a] Command: cd /var/www/AnalyChess/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-5701175866d02b91d8b9.sh" ; /usr/bin/env git remote set-url origin git@github.com:HE-Arc/AnalyChess.git )
+  INFO [510b186a] Finished in 0.112 seconds with exit status 0 (successful).
+  INFO [c1aa2c73] Running /usr/bin/env git remote update --prune as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [c1aa2c73] Command: cd /var/www/AnalyChess/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-5701175866d02b91d8b9.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [c1aa2c73] 	Fetching origin
+  INFO [c1aa2c73] Finished in 1.278 seconds with exit status 0 (successful).
+ DEBUG [e6c33870] Running if test ! -d /var/www/AnalyChess/repo; then echo "Directory does not exist '/var/www/AnalyChess/repo'" 1>&2; false; fi as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [e6c33870] Command: if test ! -d /var/www/AnalyChess/repo; then echo "Directory does not exist '/var/www/AnalyChess/repo'" 1>&2; false; fi
+ DEBUG [e6c33870] Finished in 0.108 seconds with exit status 0 (successful).
+  INFO [26d30848] Running /usr/bin/env mkdir -p /var/www/AnalyChess/releases/20210315123637 as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [26d30848] Command: cd /var/www/AnalyChess/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-5701175866d02b91d8b9.sh" ; /usr/bin/env mkdir -p /var/www/AnalyChess/releases/20210315123637 )
+  INFO [26d30848] Finished in 0.102 seconds with exit status 0 (successful).
+  INFO [c269dcf1] Running /usr/bin/env git archive main | /usr/bin/env tar -x -f - -C /var/www/AnalyChess/releases/20210315123637 as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [c269dcf1] Command: cd /var/www/AnalyChess/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-5701175866d02b91d8b9.sh" ; /usr/bin/env git archive main | /usr/bin/env tar -x -f - -C /var/www/AnalyChess/releases/20210315123637 )
+  INFO [c269dcf1] Finished in 0.133 seconds with exit status 0 (successful).
+ DEBUG [01eac44f] Running if test ! -d /var/www/AnalyChess/repo; then echo "Directory does not exist '/var/www/AnalyChess/repo'" 1>&2; false; fi as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [01eac44f] Command: if test ! -d /var/www/AnalyChess/repo; then echo "Directory does not exist '/var/www/AnalyChess/repo'" 1>&2; false; fi
+ DEBUG [01eac44f] Finished in 0.104 seconds with exit status 0 (successful).
+ DEBUG [2cbaa820] Running /usr/bin/env git rev-list --max-count=1 main as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [2cbaa820] Command: cd /var/www/AnalyChess/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-5701175866d02b91d8b9.sh" ; /usr/bin/env git rev-list --max-count=1 main )
+ DEBUG [2cbaa820] 	78b591a8c2f0eed60476e9e1c8ab430085d3d565
+ DEBUG [2cbaa820] Finished in 0.118 seconds with exit status 0 (successful).
+ DEBUG [27699953] Running if test ! -d /var/www/AnalyChess/releases/20210315123637; then echo "Directory does not exist '/var/www/AnalyChess/releases/20210315123637'" 1>&2; false; fi as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [27699953] Command: if test ! -d /var/www/AnalyChess/releases/20210315123637; then echo "Directory does not exist '/var/www/AnalyChess/releases/20210315123637'" 1>&2; false; fi
+ DEBUG [27699953] Finished in 0.101 seconds with exit status 0 (successful).
+  INFO [65a69032] Running /usr/bin/env echo "78b591a8c2f0eed60476e9e1c8ab430085d3d565" > REVISION as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [65a69032] Command: cd /var/www/AnalyChess/releases/20210315123637 && /usr/bin/env echo "78b591a8c2f0eed60476e9e1c8ab430085d3d565" > REVISION
+  INFO [65a69032] Finished in 0.115 seconds with exit status 0 (successful).
+  INFO [c78e6e5f] Running /usr/bin/env ln -s /var/www/AnalyChess/releases/20210315123637 /var/www/AnalyChess/releases/current as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [c78e6e5f] Command: /usr/bin/env ln -s /var/www/AnalyChess/releases/20210315123637 /var/www/AnalyChess/releases/current
+  INFO [c78e6e5f] Finished in 0.107 seconds with exit status 0 (successful).
+  INFO [560f5a65] Running /usr/bin/env mv /var/www/AnalyChess/releases/current /var/www/AnalyChess as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [560f5a65] Command: /usr/bin/env mv /var/www/AnalyChess/releases/current /var/www/AnalyChess
+  INFO [560f5a65] Finished in 0.110 seconds with exit status 0 (successful).
+  INFO [67ea1e11] Running /usr/bin/env sudo sv reload uwsgi as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [67ea1e11] Command: /usr/bin/env sudo sv reload uwsgi
+ DEBUG [67ea1e11] 	ok: down: uwsgi: 1s, normally up, want up
+  INFO [67ea1e11] Finished in 0.124 seconds with exit status 0 (successful).
+ DEBUG [1c24b15a] Running /usr/bin/env ls -x /var/www/AnalyChess/releases as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [1c24b15a] Command: /usr/bin/env ls -x /var/www/AnalyChess/releases
+ DEBUG [1c24b15a] 	20210312110201	20210312110818	20210312113105	20210315123257	20210315123536
+20210315123637
+ DEBUG [1c24b15a] Finished in 0.108 seconds with exit status 0 (successful).
+  INFO Keeping 5 of 6 deployed releases on srvz-webapp.he-arc.ch
+ DEBUG [167cc809] Running [ -d /var/www/AnalyChess/current ] as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [167cc809] Command: [ -d /var/www/AnalyChess/current ]
+ DEBUG [167cc809] Finished in 0.101 seconds with exit status 0 (successful).
+ DEBUG [e889eb55] Running /usr/bin/env readlink /var/www/AnalyChess/current as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [e889eb55] Command: /usr/bin/env readlink /var/www/AnalyChess/current
+ DEBUG [e889eb55] 	/var/www/AnalyChess/releases/20210315123637
+ DEBUG [e889eb55] Finished in 0.103 seconds with exit status 0 (successful).
+  INFO [989f781a] Running /usr/bin/env rm -rf /var/www/AnalyChess/releases/20210312110201 as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [989f781a] Command: /usr/bin/env rm -rf /var/www/AnalyChess/releases/20210312110201
+  INFO [989f781a] Finished in 0.107 seconds with exit status 0 (successful).
+ DEBUG [0b8ae953] Running if test ! -d /var/www/AnalyChess/releases; then echo "Directory does not exist '/var/www/AnalyChess/releases'" 1>&2; false; fi as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [0b8ae953] Command: if test ! -d /var/www/AnalyChess/releases; then echo "Directory does not exist '/var/www/AnalyChess/releases'" 1>&2; false; fi
+ DEBUG [0b8ae953] Finished in 0.108 seconds with exit status 0 (successful).
+  INFO [acf6fb3c] Running /usr/bin/env echo "Branch main (at 78b591a8c2f0eed60476e9e1c8ab430085d3d565) deployed as release 20210315123637 by edouard" >> /var/www/AnalyChess/revisions.log as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [acf6fb3c] Command: cd /var/www/AnalyChess/releases && /usr/bin/env echo "Branch main (at 78b591a8c2f0eed60476e9e1c8ab430085d3d565) deployed as release 20210315123637 by edouard" >> /var/www/AnalyChess/revisions.log
+  INFO [acf6fb3c] Finished in 0.115 seconds with exit status 0 (successful).
+  INFO [20032ca3] Running python3 -m venv /var/www/AnalyChess/shared/env as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [20032ca3] Command: python3 -m venv /var/www/AnalyChess/shared/env
+  INFO [20032ca3] Finished in 1.603 seconds with exit status 0 (successful).
+  INFO [6a7ed7fb] Running source /var/www/AnalyChess/shared/env/bin/activate as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [6a7ed7fb] Command: source /var/www/AnalyChess/shared/env/bin/activate
+  INFO [6a7ed7fb] Finished in 0.131 seconds with exit status 0 (successful).
+  INFO [6de3488b] Running /var/www/AnalyChess/shared/env/bin/pip install -r /var/www/AnalyChess/releases/20210315123637/requirements.txt as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [6de3488b] Command: /var/www/AnalyChess/shared/env/bin/pip install -r /var/www/AnalyChess/releases/20210315123637/requirements.txt
+ DEBUG [6de3488b] 	Requirement already satisfied: wheel in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123637/requirements.txt (line 1)) (0.36.2)
+ DEBUG [6de3488b] 	Requirement already satisfied: asgiref in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123637/requirements.txt (line 2)) (3.3.1)
+ DEBUG [6de3488b] 	Requirement already satisfied: certifi==2020.12.5 in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123637/requirements.txt (line 3)) (2020.12.5)
+ DEBUG [6de3488b] 	Requirement already satisfied: Django in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123637/requirements.txt (line 4)) (3.1.7)
+ DEBUG [6de3488b] 	Requirement already satisfied: django-debug-toolbar==3.2 in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123637/requirements.txt (line 5)) (3.2)
+ DEBUG [6de3488b] 	Requirement already satisfied: djangorestframework==3.12.2 in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123637/requirements.txt (line 6)) (3.12.2)
+ DEBUG [6de3488b] 	Requirement already satisfied: mysqlclient in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123637/requirements.txt (line 7)) (2.0.3)
+ DEBUG [6de3488b] 	Requirement already satisfied: psycopg2 in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123637/requirements.txt (line 8)) (2.8.6)
+ DEBUG [6de3488b] 	Requirement already satisfied: pytz in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123637/requirements.txt (line 9)) (2021.1)
+ DEBUG [6de3488b] 	Requirement already satisfied: sqlparse in /var/www/AnalyChess/shared/env/lib/python3.8/site-packages (from -r /var/www/AnalyChess/releases/20210315123637/requirements.txt (line 10)) (0.4.1)
+  INFO [6de3488b] Finished in 1.242 seconds with exit status 0 (successful).
+  INFO [24ed67c3] Running /var/www/AnalyChess/shared/env/bin/python3 ~/www/AnalyChess/current/analychess/manage.py migrate as poweruser@srvz-webapp.he-arc.ch
+ DEBUG [24ed67c3] Command: /var/www/AnalyChess/shared/env/bin/python3 ~/www/AnalyChess/current/analychess/manage.py migrate
+ DEBUG [24ed67c3] 	Traceback (most recent call last):
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/backends/base/base.py", line 219, in ensure_connection
+    self.connect()
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/backends/base/base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/backends/mysql/base.py", line 234, in get_new_connection
+    return Database.connect(**conn_params)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/MySQLdb/__init__.py", line 130, in Connect
+    return Connection(*args, **kwargs)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/MySQLdb/connections.py", line 185, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb._exceptions.OperationalError: (2002, "Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/poweruser/www/AnalyChess/current/analychess/manage.py", line 22, in <module>
+    main()
+  File "/home/poweruser/www/AnalyChess/current/analychess/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/core/management/__init__.py", line 401, in execute_from_command_line
+    utility.execute()
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/core/management/__init__.py", line 395, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/core/management/base.py", line 330, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/core/management/base.py", line 371, in execute
+    output = self.handle(*args, **options)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/core/management/base.py", line 85, in wrapped
+    res = handle_func(*args, **kwargs)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/core/management/commands/migrate.py", line 75, in handle
+    self.check(databases=[database])
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/core/management/base.py", line 392, in check
+    all_issues = checks.run_checks(
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/core/checks/registry.py", line 70, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/core/checks/database.py", line 13, in check_database_backends
+    issues.extend(conn.validation.check(**kwargs))
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/backends/mysql/validation.py", line 9, in check
+    issues.extend(self._check_sql_mode(**kwargs))
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/backends/mysql/validation.py", line 13, in _check_sql_mode
+    if not (self.connection.sql_mode & {'STRICT_TRANS_TABLES', 'STRICT_ALL_TABLES'}):
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/backends/mysql/base.py", line 376, in sql_mode
+    with self.cursor() as cursor:
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/backends/base/base.py", line 259, in cursor
+    return self._cursor()
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/backends/base/base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/backends/base/base.py", line 219, in ensure_connection
+    self.connect()
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/backends/base/base.py", line 219, in ensure_connection
+    self.connect()
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/backends/base/base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/django/db/backends/mysql/base.py", line 234, in get_new_connection
+    return Database.connect(**conn_params)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/MySQLdb/__init__.py", line 130, in Connect
+    return Connection(*args, **kwargs)
+  File "/var/www/AnalyChess/shared/env/lib/python3.8/site-packages/MySQLdb/connections.py", line 185, in __init__
+    super().__init__(*args, **kwargs2)
+django.db.utils.OperationalError: (2002, "Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)")
+  INFO ---------------------------------------------------------------------------
+  INFO START 2021-03-15 14:17:00 +0100 cap production rollback
+  INFO ---------------------------------------------------------------------------
