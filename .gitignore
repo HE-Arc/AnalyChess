@@ -1,1 +1,5 @@
 analychess/analychess/my.cnf
+analychess_front/dist/
+analychess_front/node_modules/
+*/__pycache__/*
+*.pyc
