@@ -15,13 +15,11 @@ def api_root(request):
         'games': reverse('game-list', request=request)
     })
 
-
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permissions = [permissions.AllowAny]
     
-
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
