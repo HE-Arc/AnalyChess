@@ -1,6 +1,6 @@
 # rename the file my.cnf
 # modify value according to your config
-[clients]
+[client]
 database = analychess
 user = 
 password = 
