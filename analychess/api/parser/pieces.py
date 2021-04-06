@@ -12,3 +12,22 @@ class PieceType(Enum):
     QUEEN = 4
     KING = 5
 
+class ChessPiece:
+    def __init__(self, color, pieceType):
+        self.color = color
+        self.pieceType = pieceType
+    
+    def __repr__(self):
+        let = 'P'
+        if(self.pieceType == PieceType.KNIGHT):
+            let = 'N'
+        elif(self.pieceType == PieceType.BISHOP):
+            let = 'B'
+        elif(self.pieceType == PieceType.ROOK):
+            let = 'R'
+        elif(self.pieceType == PieceType.QUEEN):
+            let = 'Q'
+        elif(self.pieceType == PieceType.KING):
+            let = 'K'
+
+        return let
