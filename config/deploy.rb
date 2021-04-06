@@ -70,6 +70,7 @@ namespace :python do
         execute "npm install --prefix ~/www/AnalyChess/current/analychess_front"
         execute "npm run build --prefix ~/www/AnalyChess/current/analychess_front"
         execute "sudo chown poweruser /var/www/logs/*"
+        execute "sudo sv reload uwsgi"
         end
     end
 end
