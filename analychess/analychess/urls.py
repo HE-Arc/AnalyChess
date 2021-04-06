@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
-from .views import LogoutView
+from .views import LogoutView, TestView
 from django.urls import path, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
@@ -38,5 +38,7 @@ urlpatterns = [
     path('api/login/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/login/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api/logout', LogoutView.as_view(), name='auth_logout'),
+    path('api/test', TestView.as_view(), name='test'),
+    
 ]   
 
