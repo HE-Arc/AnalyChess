@@ -69,6 +69,7 @@ namespace :python do
         execute "#{venv_path}/bin/python3 ~/www/AnalyChess/current/analychess/manage.py migrate"
         execute "npm install --prefix ~/www/AnalyChess/current/analychess_front"
         execute "npm run build --prefix ~/www/AnalyChess/current/analychess_front"
+        execute "sudo chown poweruser /var/www/logs/*"
         end
     end
 end
