@@ -66,8 +66,8 @@ namespace :python do
         execute "source #{venv_path}/bin/activate"
 	    execute "#{venv_path}/bin/pip install -r #{release_path}/requirements.txt"
         execute "sed -i -e 's/analychess\\/my.cnf/~\\/www\\/config\\/my.cnf/' ~/www/AnalyChess/current/analychess/analychess/settings.py"
-        #execute "#{venv_path}/bin/python3 ~/www/AnalyChess/current/analychess/manage.py migrate"
-        execte "cd /www/AnalyChess/current/analychess_front"
+        execute "#{venv_path}/bin/python3 ~/www/AnalyChess/current/analychess/manage.py migrate"
+        execute "cd /www/AnalyChess/current/analychess_front"
         execute "npm install"
         execute "npm run build"
         end
