@@ -16,18 +16,27 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
-from api import views
+from .views import LogoutView
 from django.urls import path, include
 from django.contrib.auth.models import User
-import debug_toolbar
 from rest_framework import routers, serializers, viewsets
 from rest_framework.authtoken.views import obtain_auth_token
+import debug_toolbar
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('api/admin/', admin.site.urls),
     path("api/", include('api.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
-    path('auth-api/', include('rest_framework.urls', namespace='rest_framework')),
-    path('login', obtain_auth_token, name='api_token_auth'),
-]
+    path('api/auth-api/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/login', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/login/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/login/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/logout', LogoutView.as_view(), name='auth_logout'),
+]   
 
