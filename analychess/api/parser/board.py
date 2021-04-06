@@ -65,3 +65,10 @@ class Board:
         for i in range(BOARD_SIZE):
             row.append(None)
         return row
+
+    def switchColor(self):
+        if(self.currentPlayingColor == pieces.PieceColor.WHITE):
+            self.currentPlayingColor = pieces.PieceColor.BLACK
+        else:
+            self.currentPlayingColor = pieces.PieceColor.WHITE
+
