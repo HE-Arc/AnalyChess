@@ -9,7 +9,6 @@
 
 import Account from './views/Account.vue';
 
-
 export default {
   components:{
   Account,
