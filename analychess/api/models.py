@@ -6,9 +6,9 @@ class MyUser(AbstractUser):
     password = models.CharField(max_length=255)
     
 class Game(models.Model):
-    owner = models.ManyToManyField(MyUser, related_name="games")
-    title = models.CharField(max_length=255, default="")
-    description = models.TextField(default="")
-    result = models.CharField(max_length=255, default="")
+    owner = models.ManyToManyField(MyUser, related_name='games')
+    title = models.CharField(max_length=255, default='')
+    description = models.TextField(default='')
+    result = models.CharField(max_length=255, default='')
     moves = models.JSONField(default=dict)
     created_at = models.DateTimeField(auto_now_add=True)

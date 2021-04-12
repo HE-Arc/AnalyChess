@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from api.models import Game
+from .models import Game
 
 # Register your models here.
 
