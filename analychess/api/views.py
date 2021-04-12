@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from .parser.parser import parse
 from django.http import JsonResponse
+from rest_framework import status
 
 
 
@@ -39,8 +40,18 @@ class GameDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
 
+    def delete(self, request, *args, **kwargs):
+        game = self.get_object()
+        # If last owner : delete the game
+        if(len(game.owner.values()) == 1):
+            return self.destroy(request, *args, **kwargs)
+        # Else remove the current user from the game
+        else:
+            game.owner.remove(request.user)
+            print(game.owner.all())
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 @api_view(['POST'])
 def upload_pgn(request):
     pgn = parse(request.data['pgn'])
-    print(AnalysisSerializer.serialize(pgn))
     return JsonResponse(AnalysisSerializer().serialize(pgn), safe=False)

@@ -35,7 +35,17 @@ class GameSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Game
-        fields = ['id', 'owner', 'path', 'analyze_path']
+        fields = ['id', 'title', 'result', 'description', 'moves']
+
+    def create(self, validated_data):
+        validated_data['owner'] = [self.context['request'].user]
+        validated_data['owner'].append(2)
+        return super(GameSerializer, self).create(validated_data)
+
+    def update(self,instance, validated_data):
+        print("ok")
+        return instance
+    
 
 class AnalysisSerializer:
     @staticmethod
