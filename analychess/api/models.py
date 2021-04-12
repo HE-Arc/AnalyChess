@@ -16,6 +16,3 @@ class Game(models.Model):
 
     def __str__(self):
         return f'\n\tuser : {self.owner.all()}\n\tpath : {self.path}\n\tanalyze_path : {self.analyze_path}\n'
-
-
-

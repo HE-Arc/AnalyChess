@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Game, MyUser
 from django.contrib.auth.hashers import make_password
+from rest_framework.renderers import JSONRenderer
 
 class UserSerializer(serializers.ModelSerializer):
     games = serializers.PrimaryKeyRelatedField(many=True, queryset=Game.objects.all(), allow_null=True)
@@ -35,3 +36,37 @@ class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
         fields = ['id', 'owner', 'path', 'analyze_path']
+
+class AnalysisSerializer:
+    @staticmethod
+    def serialize(moves):
+        analysis = {}
+        analysis["title"] = "Title"
+        analysis["description"] = "Description"
+        analysis["result"] = "Result"
+        analysis['moves'] = []
+        for move in moves: 
+            analysis["moves"].append(MoveSerializer.serialize(move))
+
+        return analysis
+
+class MoveSerializer:
+    @staticmethod
+    def serialize(move):
+        m = {}
+        m['comment'] = "Comment"
+        m['arrows'] = [] 
+        m['move'] = {}
+        m['move']['movements'] = []
+        for movement in move._movements:
+            m['move']['movements'].append(movement)
+        m['move']['pgnMove'] = move.pgnMove
+
+        m['moveStrength'] = 0
+        m['PosEvaluation'] = 0
+        m['tags'] = []
+        return m
+
+        
+        
+

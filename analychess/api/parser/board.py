@@ -1,13 +1,13 @@
-from enum import Enum 
-import pieces
+from enum import Enum, IntEnum 
+from .pieces import *
 
 BOARD_SIZE = 8
-ROOK_MOVEMENT_TYPES = [pieces.PieceType.ROOK, pieces.PieceType.QUEEN]
-BISHOP_MOVEMENT_TYPES = [pieces.PieceType.BISHOP, pieces.PieceType.QUEEN]
-KNIGHT_MOVEMENT_TYPES = [pieces.PieceType.KNIGHT]
-KING_MOVEMENT_TYPES = [pieces.PieceType.KING, pieces.PieceType.QUEEN]
+ROOK_MOVEMENT_TYPES = [PieceType.ROOK, PieceType.QUEEN]
+BISHOP_MOVEMENT_TYPES = [PieceType.BISHOP, PieceType.QUEEN]
+KNIGHT_MOVEMENT_TYPES = [PieceType.KNIGHT]
+KING_MOVEMENT_TYPES = [PieceType.KING, PieceType.QUEEN]
 
-class File(Enum):
+class File(IntEnum):
     FILE_A = 0
     FILE_B = 1
     FILE_C = 2
@@ -17,7 +17,7 @@ class File(Enum):
     FILE_G = 6
     FILE_H = 7
 
-class Row(Enum):
+class Row(IntEnum):
     ROW_1 = 0
     ROW_2 = 1
     ROW_3 = 2
@@ -30,13 +30,13 @@ class Row(Enum):
 class Board:
     def __init__(self):
         self.board = []
-        self.currentPlayingColor = pieces.PieceColor.WHITE
+        self.currentPlayingColor = PieceColor.WHITE
 
         for rowIndex in range(BOARD_SIZE):
             # Select color for the row
-            color = pieces.PieceColor.WHITE
+            color = PieceColor.WHITE
             if rowIndex > BOARD_SIZE / 2:
-                color = pieces.PieceColor.BLACK
+                color = PieceColor.BLACK
 
             row = self.__createEmptyRow__()
             # Pieces row
@@ -50,20 +50,20 @@ class Board:
     
     def __createPieceRow__(self, color):
         return [
-            pieces.ChessPiece(color, pieces.PieceType.ROOK),
-            pieces.ChessPiece(color, pieces.PieceType.KNIGHT),
-            pieces.ChessPiece(color, pieces.PieceType.BISHOP),
-            pieces.ChessPiece(color, pieces.PieceType.QUEEN),
-            pieces.ChessPiece(color, pieces.PieceType.KING),
-            pieces.ChessPiece(color, pieces.PieceType.BISHOP),
-            pieces.ChessPiece(color, pieces.PieceType.KNIGHT),
-            pieces.ChessPiece(color, pieces.PieceType.ROOK)
+            ChessPiece(color, PieceType.ROOK),
+            ChessPiece(color, PieceType.KNIGHT),
+            ChessPiece(color, PieceType.BISHOP),
+            ChessPiece(color, PieceType.QUEEN),
+            ChessPiece(color, PieceType.KING),
+            ChessPiece(color, PieceType.BISHOP),
+            ChessPiece(color, PieceType.KNIGHT),
+            ChessPiece(color, PieceType.ROOK)
         ]
 
     def __createPawnRow__(self, color):
         row = []
         for i in range(BOARD_SIZE):
-            row.append(pieces.ChessPiece(color, pieces.PieceType.PAWN))
+            row.append(ChessPiece(color, PieceType.PAWN))
         return row
 
     def __createEmptyRow__(self):
@@ -86,10 +86,10 @@ class Board:
                 self.board[startRow.value][startFile.value] = None
 
     def switchColor(self):
-        if(self.currentPlayingColor == pieces.PieceColor.WHITE):
-            self.currentPlayingColor = pieces.PieceColor.BLACK
+        if(self.currentPlayingColor == PieceColor.WHITE):
+            self.currentPlayingColor = PieceColor.BLACK
         else:
-            self.currentPlayingColor = pieces.PieceColor.WHITE
+            self.currentPlayingColor = PieceColor.WHITE
 
     def __getPieceMove(self, pieceType, color, constraints, endFile, endRow):
         bestmove = None
@@ -144,7 +144,7 @@ class Board:
     
     def __getCastleMove(self, color, queenSide = False):
         row = Row.ROW_1
-        if(color == pieces.PieceColor.BLACK):
+        if(color == PieceColor.BLACK):
             row = Row.ROW_8
 
         if(queenSide):
@@ -154,15 +154,15 @@ class Board:
     
     def __getPawnMove(self, color, endFile, endRow, promotes=None):
         canMove2Forward = False
-        if((color == pieces.PieceColor.WHITE and endRow == Row.ROW_4) or (color == pieces.PieceColor.BLACK and endRow == Row.ROW_5)):
+        if((color == PieceColor.WHITE and endRow == Row.ROW_4) or (color == PieceColor.BLACK and endRow == Row.ROW_5)):
             canMove2Forward = True
         
         cellOneBackwardsRowIndex = 0
         cellTwoBackwardsRowIndex = 0
-        if(color == pieces.PieceColor.WHITE):
+        if(color == PieceColor.WHITE):
             cellOneBackwardsRowIndex = endRow.value - 1
             cellTwoBackwardsRowIndex = endRow.value - 2
-        elif(color == pieces.PieceColor.BLACK):
+        elif(color == PieceColor.BLACK):
             cellOneBackwardsRowIndex = endRow.value + 1
             cellTwoBackwardsRowIndex = endRow.value + 2
         
@@ -170,10 +170,10 @@ class Board:
         cellTwoBackwards = self.board[cellTwoBackwardsRowIndex][endFile.value]
 
         if(cellOneBackwards != None):
-            if(cellOneBackwards.pieceType == pieces.PieceType.PAWN and cellOneBackwards.color == color):
+            if(cellOneBackwards.pieceType == PieceType.PAWN and cellOneBackwards.color == color):
                 return [(endFile, Row(cellOneBackwardsRowIndex), endFile, endRow, promotes)]
         else:
-            if(cellTwoBackwards != None and cellTwoBackwards.pieceType == pieces.PieceType.PAWN and cellTwoBackwards.color == color):
+            if(cellTwoBackwards != None and cellTwoBackwards.pieceType == PieceType.PAWN and cellTwoBackwards.color == color):
                 return [(endFile, Row(cellTwoBackwardsRowIndex), endFile, endRow, promotes)]
 
         raise Exception("Cannot find a valid pawn move")
@@ -181,7 +181,7 @@ class Board:
     def __getPawnTakesMove(self, color, startFile, endFile, endRow, promotes = None):
         movements = []
         startRow = Row(endRow.value - 1)
-        if(color == pieces.PieceColor.BLACK):
+        if(color == PieceColor.BLACK):
             startRow = Row(endRow.value + 1)
         movements.append((startFile, startRow, endFile, endRow, promotes))
 
@@ -203,13 +203,13 @@ class Board:
         elif(parsedMove.isPawnTakesMove()):
             promotedPiece = None
             if(parsedMove.isPromoteMove()):
-                promotedPiece = pieces.ChessPiece(self.currentPlayingColor, parsedMove.getPromotedPiece())
+                promotedPiece = ChessPiece(self.currentPlayingColor, parsedMove.getPromotedPiece())
             endFile, endRow = parsedMove.getEndPos()
             return self.__getPawnTakesMove(self.currentPlayingColor, parsedMove.getPawnTakesStartRow(), endFile, endRow, promotes=promotedPiece)
         elif(parsedMove.isPawnMove()):
             promotedPiece = None
             if(parsedMove.isPromoteMove()):
-                promotedPiece = pieces.ChessPiece(self.currentPlayingColor, parsedMove.getPromotedPiece())
+                promotedPiece = ChessPiece(self.currentPlayingColor, parsedMove.getPromotedPiece())
             endFile, endRow = parsedMove.getEndPos()
             return self.__getPawnMove(self.currentPlayingColor, endFile, endRow, promotes=promotedPiece)
         raise Exception("Not a valid move") 

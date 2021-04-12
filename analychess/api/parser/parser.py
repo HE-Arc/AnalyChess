@@ -1,8 +1,8 @@
 import sys
 import re
-import pieces
-from constraints import FileConstraint, RowConstraint
-from board import Board, File, Row
+from .pieces import *
+from .constraints import *
+from .board import *
 
 PGN_REG = r'((?:(?:(?:([a-h])x|(?:([KQRNB])([a-h]?[1-8]?)(x?))))?([a-h][1-8])|(O-O)|(O-O-O))(?:=([QRNB]))?(?:(\+)|(#))?)'
 
@@ -53,15 +53,15 @@ class ParsedMove(object):
     @staticmethod
     def __strToPiece(strPiece):
         if(strPiece == 'N'):
-            return pieces.PieceType.KNIGHT
+            return PieceType.KNIGHT
         elif(strPiece == 'B'):
-            return pieces.PieceType.BISHOP
+            return PieceType.BISHOP
         elif(strPiece == 'R'):
-            return pieces.PieceType.ROOK
+            return PieceType.ROOK
         elif(strPiece == 'Q'):
-            return pieces.PieceType.QUEEN
+            return PieceType.QUEEN
         elif(strPiece == 'K'):
-            return pieces.PieceType.KING
+            return PieceType.KING
         return None
 
     @staticmethod
@@ -88,7 +88,7 @@ class ParsedMove(object):
             constraints.append(FileConstraint(ParsedMove.__strToFile(fileConstraitReg[0])))
         rowConstraitReg = re.search('([1-8])', self.regMatch[3])
         if(rowConstraitReg):
-            constraints.append(rowConstraint(ParsedMove.__strToRow(rowConstraitReg[0])))
+            constraints.append(RowConstraint(ParsedMove.__strToRow(rowConstraitReg[0])))
         return constraints
 
     def getPiece(self):
@@ -136,7 +136,6 @@ class Move(object):
     
 def parse(pgnStr):
     matches = re.findall(PGN_REG, pgnStr)
-    print(matches)
 
     moves = []
 
