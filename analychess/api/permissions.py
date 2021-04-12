@@ -1,9 +1,9 @@
 from rest_framework import permissions
 
-
 class IsOwnerOrReadOnly(permissions.BasePermission):
     """
     Custom permission to only allow owners of an object to edit it.
+    Code from https://www.django-rest-framework.org/api-guide/permissions/#examples
     """
 
     def has_object_permission(self, request, view, obj):
@@ -18,6 +18,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 class IsMeOrReadOnly(permissions.BasePermission):
     """
     Custom permission to only allow owners of an object to edit it.
+    Code modified from https://www.django-rest-framework.org/api-guide/permissions/#examples
     """
 
     def has_object_permission(self, request, view, obj):

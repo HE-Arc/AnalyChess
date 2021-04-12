@@ -24,29 +24,33 @@ class UserSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         ret = super().to_representation(instance)
-        ret.pop("password")
+        ret.pop('password')
         return ret
 
         
     
 class GameSerializer(serializers.ModelSerializer):
-    # TODO : do not work
-    #owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Game
-        fields = ['id', 'owner', 'path', 'analyze_path']
+        fields = ['id', 'title', 'result', 'description', 'moves']
+
+    def create(self, validated_data):
+        validated_data['owner'] = [self.context['request'].user]
+        validated_data['owner'].append(2)
+        return super(GameSerializer, self).create(validated_data)
+    
 
 class AnalysisSerializer:
     @staticmethod
     def serialize(moves):
         analysis = {}
-        analysis["title"] = "Title"
-        analysis["description"] = "Description"
-        analysis["result"] = "Result"
+        analysis['title'] = 'Title'
+        analysis['description'] = 'Description'
+        analysis['result'] = 'Result'
         analysis['moves'] = []
         for move in moves: 
-            analysis["moves"].append(MoveSerializer.serialize(move))
+            analysis['moves'].append(MoveSerializer.serialize(move))
 
         return analysis
 
@@ -54,7 +58,7 @@ class MoveSerializer:
     @staticmethod
     def serialize(move):
         m = {}
-        m['comment'] = "Comment"
+        m['comment'] = 'Comment'
         m['arrows'] = [] 
         m['move'] = {}
         m['move']['movements'] = []
