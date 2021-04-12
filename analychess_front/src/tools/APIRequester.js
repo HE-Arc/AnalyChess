@@ -142,31 +142,27 @@ export default class ApiRequester {
      */
     async handleError(error, verb)
     {
-        // Authentification error
-        if (error.response.status == 401)
+        // Authentification error with token not valid
+        if (error.response.status == 401 && error.response.data.code == "token_not_valid")
         {
-            // Token given not valid
-            if (error.response.data.code == "token_not_valid")
+            // Try to refresh the token
+            if (await this.refresh())
             {
-                // Try to refresh the token
-                if (await this.refresh())
-                {
-                    switch (verb){
-                        case "GET":
-                            return await this.get();
-                        case "POST":
-                            return await this.post();
-                        case "PUT":
-                            return await this.get();
-                        case "DELETE":
-                            return await this.get();
-                    }
+                switch (verb){
+                    case "GET":
+                        return await this.get();
+                    case "POST":
+                        return await this.post();
+                    case "PUT":
+                        return await this.put();
+                    case "DELETE":
+                        return await this.delete();
                 }
-                else
-                {
-                    // TODO : redirect to LoginView
-                    console.log("LoginView")
-                }
+            }
+            else
+            {
+                // TODO : redirect to LoginView
+                console.log("LoginView")
             }
         }
         // Others errors
@@ -196,16 +192,8 @@ export default class ApiRequester {
         }
         catch(error)
         {   
-             // Authentification error
-             if (error.response.status == 401)
-             {
-                 // Token given not valid
-                 if (error.response.data.code == "token_not_valid")
-                 {
-                     // refresh token expired
-                     return false
-                 }
-             }
+             // Authentification error with refresh token invalid or other errors
+            return false   
         }
     }
     
