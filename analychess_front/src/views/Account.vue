@@ -87,7 +87,7 @@ components:{
         this.game = data
     },
     async put_game() {
-        let data = await this.requester.setParam({"title" : "title2", "result": "result1", "description": "desc1", "moves": this.game}).setRoute("game/15").put();
+        let data = await this.requester.setParam({"title" : "title2", "result": "result1", "description": "desc1", "moves": this.game}).setRoute("game/26").put();
         console.log(data)
         this.game = data
     },

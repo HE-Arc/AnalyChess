@@ -30,8 +30,6 @@ class UserSerializer(serializers.ModelSerializer):
         
     
 class GameSerializer(serializers.ModelSerializer):
-    # TODO : do not work
-    #owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Game
@@ -41,10 +39,6 @@ class GameSerializer(serializers.ModelSerializer):
         validated_data['owner'] = [self.context['request'].user]
         validated_data['owner'].append(2)
         return super(GameSerializer, self).create(validated_data)
-
-    def update(self,instance, validated_data):
-        print("ok")
-        return instance
     
 
 class AnalysisSerializer:
