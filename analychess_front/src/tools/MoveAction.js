@@ -63,7 +63,6 @@ export default class MoveAction
 
         for(const piece of this.removedPieces)
         {
-            console.log(piece);
             piece.hidden = false;
         }
     }
