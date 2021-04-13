@@ -25,9 +25,9 @@ export default {
 </script>
 
 <style>
+
 .board
 {
-    background: red;
     display: flex;
     flex-direction: column;
     width: 500px;
@@ -51,5 +51,6 @@ export default {
 {
     background: brown;
 }
+
 </style>
 
