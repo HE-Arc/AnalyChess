@@ -15,7 +15,6 @@
                 <button v-on:click="get_game">GET GAME</button>
                 <button v-on:click="put_game">PUT GAME</button>
                 <button v-on:click="del_game">DEL GAME</button>
-
             </div>
         <div class="container">
             <div class="row row-cols-4">

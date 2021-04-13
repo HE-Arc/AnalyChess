@@ -30,19 +30,17 @@ export default {
 {
     display: flex;
     flex-direction: column;
-    width: 1000px;
-    height: 1000px;
 }
 
 .board > .row
 {
-    flex: 1;
     display: flex;
 }
 
 .board > .row > .cell
 {
-    flex: 1;
+    width: 100px;
+    height: 100px;
     background: white;
 }
 
