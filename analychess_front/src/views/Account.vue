@@ -18,7 +18,7 @@
             </div>
         <div class="container">
             <div class="row row-cols-4">
-                <game-thumbnail/> 
+                <game-thumbnail/>
                 <game-thumbnail/> 
                 <game-thumbnail/>
                 <game-thumbnail/>
@@ -29,7 +29,9 @@
             </div>
         </div>
         <div class="container">
-            <Board :selectedMoveIndex="1"/>
+            <div>
+                <Board :selectedMoveIndex="1"/>
+            </div>
         </div>
     </div>
 </template>
