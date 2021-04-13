@@ -30,8 +30,8 @@ export default {
 {
     display: flex;
     flex-direction: column;
-    width: 500px;
-    height: 500px;
+    width: 1000px;
+    height: 1000px;
 }
 
 .board > .row
