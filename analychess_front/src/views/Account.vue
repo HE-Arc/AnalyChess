@@ -15,11 +15,10 @@
                 <button v-on:click="get_game">GET GAME</button>
                 <button v-on:click="put_game">PUT GAME</button>
                 <button v-on:click="del_game">DEL GAME</button>
-
             </div>
         <div class="container">
             <div class="row row-cols-4">
-                <game-thumbnail/> 
+                <game-thumbnail/>
                 <game-thumbnail/> 
                 <game-thumbnail/>
                 <game-thumbnail/>
@@ -29,6 +28,11 @@
                 <game-thumbnail/>
             </div>
         </div>
+        <div class="container">
+            <div>
+                <Board :selectedMoveIndex="1"/>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -36,10 +40,11 @@
 import Header from '../components/Header.vue';
 import GameThumbnail from '../components/GameThumbnail.vue';
 import APIRequester from '@/tools/APIRequester.js'
+import Board from '../components/Board.vue';
 
 export default {
 components:{
-
+    Board,
     Header,
     GameThumbnail,
 },
