@@ -1,23 +1,35 @@
 <template>
-<div class="board">
-    <div class="board-row" v-for="rowIndex in BOARD_SIZE" :key="rowIndex">
-        <div class="board-cell" v-for="fileIndex in BOARD_SIZE" :key="fileIndex"></div>
+<div>
+    <div class="board">
+        <div class="board-row" v-for="rowIndex in BOARD_SIZE" :key="rowIndex">
+            <div class="board-cell" v-for="fileIndex in BOARD_SIZE" :key="fileIndex"></div>
+        </div>
+
+        <ChessPiece
+            v-for="piece in pieces"
+            :size="100"
+            :key="piece.key"
+            :piece="piece.piece"
+            :row="piece.row"
+            :file="piece.file"
+            :hidden="piece.hidden"
+        />
     </div>
 
-    <ChessPiece
-        v-for="piece in pieces"
-        :size="100"
-        :key="piece.key"
-        :piece="piece.piece"
-        :row="piece.row"
-        :file="piece.file"
-    />
+    <div>
+        <button class="btn btn-secondary" @click="firstMove">First</button>
+        <button class="btn btn-secondary" @click="prevMove">Prev</button>
+        <button class="btn btn-secondary" @click="nextMove">Next</button>
+        <button class="btn btn-secondary" @click="lastMove">Last</button>
+    </div>
 </div>
 </template>
 
 <script>
 
 import ChessPiece from "./ChessPiece.vue";
+import MoveAction from "../tools/MoveAction";
+const moves = require("../../moves.json");
 
 const WHITE = 0;
 const BLACK = 1;
@@ -42,17 +54,20 @@ export default {
     data() {
         return {
             BOARD_SIZE: 8,
-            pieces: []
+            pieces: [],
+            actions: [],
+            currentMoveIndex: 0
         };
     },
     mounted() {
         this.resetBoard();
+        
+        for(const {move} of moves.moves)
+        {
+            this.actions.push(new MoveAction(move.movements, this.pieces));
+        }
     },
     methods: {
-        getCell(row, file) {
-            let foundPieces = this.pieces.filter(p => p.row == row && p.file == file);
-            return foundPieces.length === 1 ? foundPieces[0] : null;
-        },
         resetBoard() {
             // Initial board state
             this.pieces = [];
@@ -89,10 +104,51 @@ export default {
                             piece,
                             pieceKey: `pieceKey_${pieceKey++}`,
                             row: rowIndex,
-                            file: fileIndex
+                            file: fileIndex,
+                            hidden: false
                         });
                     }
                 }
+            }
+        },
+        moveAtIndex(index) {
+            while(this.currentMoveIndex < index && this.hasNextMove())
+            {
+                this.nextMove();
+            }
+            while(this.currentMoveIndex > index && this.hasPrevMove())
+            {
+                this.prevMove();
+            }
+        },
+        hasNextMove() {
+            return this.currentMoveIndex < this.actions.length;
+        },
+        nextMove() {
+            if(this.hasNextMove())
+            {
+                this.actions[this.currentMoveIndex++].apply();
+            }
+        },
+        hasPrevMove() {
+            return this.currentMoveIndex > 0;
+        },
+        prevMove() {
+            if(this.hasPrevMove())
+            {
+                this.actions[--this.currentMoveIndex].undo();
+            }
+        },
+        lastMove() {
+            while(this.hasNextMove())
+            {
+                this.nextMove();
+            }
+        },
+        firstMove() {
+            while(this.hasPrevMove())
+            {
+                this.prevMove();
             }
         }
     },
@@ -130,7 +186,7 @@ export default {
 .board > .board-row:nth-of-type(2n + 1) > .board-cell:nth-of-type(2n),
 .board > .board-row:nth-of-type(2n) > .board-cell:nth-of-type(2n + 1)
 {
-    background: brown;
+    background: Teal;
 }
 
 </style>
