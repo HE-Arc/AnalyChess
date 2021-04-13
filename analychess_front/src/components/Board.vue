@@ -46,13 +46,10 @@ export default {
     background: white;
 }
 
-.board > .row:nth-of-type(2n) > .cell:nth-of-type(2n)
-{
-    background: black;
-}
+.board > .row:nth-of-type(2n) > .cell:nth-of-type(2n),
 .board > .row:nth-of-type(2n + 1) > .cell:nth-of-type(2n + 1)
 {
-    background: black;
+    background: brown;
 }
 </style>
 
