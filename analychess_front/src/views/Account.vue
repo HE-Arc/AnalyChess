@@ -29,6 +29,9 @@
                 <game-thumbnail/>
             </div>
         </div>
+        <div class="container">
+            <Board :selectedMoveIndex="1"/>
+        </div>
     </div>
 </template>
 <script>
@@ -36,10 +39,11 @@
 import Header from '../components/Header.vue';
 import GameThumbnail from '../components/GameThumbnail.vue';
 import APIRequester from '@/tools/APIRequester.js'
+import Board from '../components/Board.vue';
 
 export default {
 components:{
-
+    Board,
     Header,
     GameThumbnail,
 },
