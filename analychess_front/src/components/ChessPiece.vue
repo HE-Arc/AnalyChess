@@ -39,7 +39,7 @@ export default {
     },
     computed: {
         style() {
-            return `top: ${this.size * this.row}px;left: ${this.size * this.file}px;width:${this.size}px;height:${this.size}px`;
+            return `bottom: ${this.size * this.row}px;left: ${this.size * this.file}px;width:${this.size}px;height:${this.size}px`;
         }
     }
 }
@@ -50,7 +50,7 @@ export default {
 .chesspiece
 {
     position: absolute;
-    transition: top .5s, left .5s;
+    transition: bottom 250ms linear, left 250ms linear;
 }
 
 .chesspiece img
