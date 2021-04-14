@@ -3,13 +3,14 @@
     <div v-for="move in moves" :key="move.moveIndex">
         <span>{{move.moveIndex + 1}}. </span>
         <span
-            :class="{btn: true, 'btn-primary': selectedMoveIndex == move.moveIndex * 2 + 1}"
-            @click="emitMoveChange(move.moveIndex)"
-        >{{move.whiteMove}} </span>
+            :class="{btn: true, 'btn-primary': move.whiteMove.highlight}"
+            @click="emitMoveChange(move.whiteMove.semiMoveIndex)"
+        >{{move.whiteMove.move}} </span>
         <span
-            :class="{btn: true, 'btn-primary': selectedMoveIndex == move.moveIndex * 2 + 2}"
-            @click="emitMoveChange(move.moveIndex, true)"
-        >{{move.blackMove}} </span>
+            v-if="move.blackMove"
+            :class="{btn: true, 'btn-primary': move.blackMove.highlight}"
+            @click="emitMoveChange(move.blackMove.semiMoveIndex)"
+        >{{move.blackMove.move}} </span>
     </div>
 </div>
 </template>
@@ -32,23 +33,24 @@ export default {
         moves() {
             const moves = [];
             let currentMove = null;
-            for(let semiMoveIndex = 0; semiMoveIndex < this.pgnMoves.length; ++semiMoveIndex)
+            for(let pgnMoveIndex = 0; pgnMoveIndex < this.pgnMoves.length; ++pgnMoveIndex)
             {
-                if(semiMoveIndex % 2 == 0)
+                const semiMoveIndex = pgnMoveIndex + 1;
+                const move = {
+                    semiMoveIndex,
+                    move: this.pgnMoves[pgnMoveIndex],
+                    highlight: this.selectedMoveIndex == semiMoveIndex
+                }
+                if(pgnMoveIndex % 2 == 0)
                 {
                     currentMove = {
-                        moveIndex: semiMoveIndex / 2,
-                        whiteMove: this.pgnMoves[semiMoveIndex],
-                        blackMove: ""
+                        moveIndex: pgnMoveIndex / 2,
+                        whiteMove: move
                     }
                 }
                 else
                 {
-                    currentMove.blackMove = this.pgnMoves[semiMoveIndex];
-                }
-
-                if(semiMoveIndex % 2 != 0)
-                {
+                    currentMove.blackMove = move;
                     moves.push(currentMove);
                     currentMove = null;
                 }
@@ -59,8 +61,7 @@ export default {
         }
     },
     methods: {
-        emitMoveChange(moveIndex, black = false) {
-            const semiMoveIndex = moveIndex * 2 + (black ? 1 : 0) + 1;
+        emitMoveChange(semiMoveIndex) {
             this.$emit("move", semiMoveIndex);
         }
     }
