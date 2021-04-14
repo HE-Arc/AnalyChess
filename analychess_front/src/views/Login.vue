@@ -1,17 +1,46 @@
 <template>
     <section>
         <h1>Login</h1>
-        <h2>Test purpose only</h2>
-        <router-link to="/">Account</router-link>
-        <router-link to="/Game">Game</router-link>
-        <router-link to="/Login">Login</router-link>
-        <router-link to="/Test">Test</router-link>
+        <label for="input_username">Username</label>
+        <input type="text" id="input_username" v-model="username" placeholder="Username">
+        <label for="input_password">Password</label>
+        <input type="password" id="input_password" v-model="password" placeholder="****">
+        <input type="button" v-on:click="try_login"  id="input_login" value="Login">
     </section>
 </template>
 
 <script>
+
+import APIRequester from "../tools/APIRequester"
+import router from "../router/router";
+
 export default {
     name:"Login",
+    data(){
+        return{
+          username : "",
+          password : "",
+          requester : APIRequester.getInstance(),
+        }
+    },
+    methods:
+    {
+        async try_login()
+        {
+            try
+            {
+                await this.requester.login(this.username, this.password)
+                // Login successful
+                router.push({name: "Account"})
+            }
+            catch(error)
+            {
+                // TODO : Remove and react
+                console.log(error)
+            }
+        }
+    }
+
 }
 
 

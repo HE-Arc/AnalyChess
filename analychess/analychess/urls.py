@@ -25,12 +25,14 @@ import debug_toolbar
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
+    TokenVerifyView
 )
 
 urlpatterns = [
     path('api/', include('api.urls')),
     path('api/admin/', admin.site.urls),
     path('api/login', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/login/verify', TokenVerifyView.as_view(), name='token_verify'),
     path('api/login/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/logout', LogoutView.as_view(), name='auth_logout'),
     path('__debug__/', include(debug_toolbar.urls)),

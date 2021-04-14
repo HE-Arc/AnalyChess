@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
+import router from '../router/router'
 
 /**
  * Class for AJAX request to the API
@@ -76,7 +77,7 @@ export default class ApiRequester {
             return response.data;
         }
         catch(error){
-            return await this.handleError(error, "GET")
+            return await this.handleError(error, 'GET')
         }
     }
 
@@ -92,7 +93,7 @@ export default class ApiRequester {
             return response.data;
         }
         catch(error){
-            return await this.handleError(error, "POST")
+            return await this.handleError(error, 'POST')
         }
     }
 
@@ -102,7 +103,7 @@ export default class ApiRequester {
             return response.data;
         }
         catch(error){
-            return await this.handleError(error, "PUT")
+            return await this.handleError(error, 'PUT')
         }
     }
 
@@ -112,7 +113,7 @@ export default class ApiRequester {
             return response.data;
         }
         catch(error){
-            return await this.handleError(error, "DELETE")
+            return await this.handleError(error, 'DELETE')
         }
     }
 
@@ -125,11 +126,30 @@ export default class ApiRequester {
      */
     async login(username, password)
     {
-        this.setRoute("login")
-        this.setParam({"username": username, "password": password})
+        this.setRoute('login')
+        this.setParam({'username': username, 'password': password})
         let data = await this.post();
         localStorage.setItem('access', data.access);
         localStorage.setItem('refresh', data.refresh);
+    }
+
+    /**
+     * Logout
+     * 
+     * @author Edouard Goffinet
+     */
+    async logout()
+    {
+        this.setRoute('logout');
+        try{
+            this.setParam({'refresh': localStorage.getItem('refresh')});
+            this.post();
+        }
+        catch(error)
+        {
+            void(0)
+        }
+        localStorage.removeItem('access');
     }
 
     /**
@@ -143,34 +163,34 @@ export default class ApiRequester {
     async handleError(error, verb)
     {
         // Authentification error with token not valid
-        if (error.response.status == 401 && error.response.data.code == "token_not_valid")
+        if (error.response.status == 401 && error.response.data.code == 'token_not_valid')
         {
             // Try to refresh the token
             if (await this.refresh())
             {
                 switch (verb){
-                    case "GET":
+                    case 'GET':
                         return await this.get();
-                    case "POST":
+                    case 'POST':
                         return await this.post();
-                    case "PUT":
+                    case 'PUT':
                         return await this.put();
-                    case "DELETE":
+                    case 'DELETE':
                         return await this.delete();
                 }
             }
             else
             {
-                // TODO : redirect to LoginView
-                console.log("LoginView")
+                localStorage.removeItem('access');
+                router.push({name: 'Login'});
             }
         }
         // Others errors
         // TODO : implement others errors gestion (400, 404, 500)...
         else
         {
-            console.log(error.response)
-            console.error(error)
+            console.log(error.response);
+            console.error(error);
         }
     }
 
@@ -182,10 +202,10 @@ export default class ApiRequester {
      */
     async refresh()
     {
-        console.log("Refreshing");
+        console.log('Refreshing');
         try
         {
-            const reponse = await axios.post(this.#BASE_URL + this.#REFRESH_URL, {"refresh": localStorage.getItem("refresh")}, {headers: {Authorization: `Bearer ${localStorage.getItem('access')}`}})
+            const reponse = await axios.post(this.#BASE_URL + this.#REFRESH_URL, {'refresh': localStorage.getItem('refresh')}, {headers: {Authorization: `Bearer ${localStorage.getItem('access')}`}})
             localStorage.setItem('access', reponse.data.access);
             // access token successfully updated
             return true
