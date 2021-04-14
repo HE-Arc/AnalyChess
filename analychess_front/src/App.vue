@@ -1,18 +1,16 @@
 <template>
-  <div id="root">
-    <template>
-      <account/>
-    </template>
-  </div>
-</template>
-<script>  
+  <main>
+    <Header />
+    <router-view></router-view>
+  </main>
+</template> 
 
-import Account from './views/Account.vue';
+<script>
+
+import Header from '@/components/Header.vue';
 
 export default {
-  components:{
-  Account,
-  },
     name: "App",
+     components: { Header}
   };
 </script>
