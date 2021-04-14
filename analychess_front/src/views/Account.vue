@@ -28,7 +28,7 @@ import GameThumbnail from '../components/GameThumbnail.vue';
 export default {
     name:"Account",
     components:{
-    GameThumbnail,
-    },
+        GameThumbnail,
+    }
 };
 </script> 
