@@ -2,7 +2,7 @@
     <section>
         <h1>Login</h1>
         <h2>Test purpose only</h2>
-        <router-link to="/">Account</router-link>
+        <router-link to="/">Home</router-link>
         <router-link to="/game">Game</router-link>
         <router-link to="/test">Test</router-link>
         <router-link to="/logout">Logout</router-link>

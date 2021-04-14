@@ -63,7 +63,11 @@ class MoveSerializer:
         m['move'] = {}
         m['move']['movements'] = []
         for movement in move._movements:
+            # not really elegant, but ok for now
+            if movement['mPiece'] == 'None':
+                movement['mPiece'] = ""
             m['move']['movements'].append(movement)
+            
         m['move']['pgnMove'] = move.pgnMove
 
         m['moveStrength'] = 0

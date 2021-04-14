@@ -1,25 +1,27 @@
 <template>
 <div class="row">
     <div class="col">
-        <div class="board">
-            <div class="board-row" v-for="rowIndex in BOARD_SIZE" :key="rowIndex">
-                <div class="board-cell" v-for="fileIndex in BOARD_SIZE" :key="fileIndex"></div>
-            </div>
-
-            <ChessPiece
-                v-for="piece in pieces"
-                :key="piece.key"
-                :piece="piece.piece"
-                :row="piece.row"
-                :file="piece.file"
-                :hidden="piece.hidden"
-            />
-        </div>
         <div>
-            <button class="btn btn-secondary" @click="firstMove">First</button>
-            <button class="btn btn-secondary" @click="prevMove">Prev</button>
-            <button class="btn btn-secondary" @click="nextMove">Next</button>
-            <button class="btn btn-secondary" @click="lastMove">Last</button>
+            <div class="board">
+                <div class="board-row" v-for="rowIndex in BOARD_SIZE" :key="rowIndex">
+                    <div class="board-cell" v-for="fileIndex in BOARD_SIZE" :key="fileIndex"></div>
+                </div>
+
+                <ChessPiece
+                    v-for="piece in pieces"
+                    :key="piece.key"
+                    :piece="piece.piece"
+                    :row="piece.row"
+                    :file="piece.file"
+                    :hidden="piece.hidden"
+                />
+            </div>
+            <div>
+                <button class="btn btn-secondary" @click="firstMove">First</button>
+                <button class="btn btn-secondary" @click="prevMove">Prev</button>
+                <button class="btn btn-secondary" @click="nextMove">Next</button>
+                <button class="btn btn-secondary" @click="lastMove">Last</button>
+            </div>
         </div>
     </div>
 
@@ -39,7 +41,6 @@
 import ChessPiece from "./ChessPiece.vue";
 import MovesList from "./MovesList.vue";
 import MoveAction from "../tools/MoveAction";
-const moves = require("../../moves.json");
 
 const WHITE = 0;
 const BLACK = 1;
@@ -72,15 +73,15 @@ export default {
     },
     mounted() {
         this.resetBoard();
-        
-        for(const {move} of moves.moves)
-        {
+        for(let {move} of this.game.moves)
+        {   
+            console.log(move)
             this.actions.push(new MoveAction(move.movements, this.pieces));
         }
     },
     computed: {
         pgnMoves() {
-            return moves.moves.map(m => {
+            return this.game.moves.map(m => {
                 return m.move.pgnMove;
             });
         }
@@ -174,7 +175,8 @@ export default {
         selectedMoveIndex: {
             type: Number,
             required: true
-        }
+        },
+        game: null,
     }
 }
 </script>
@@ -196,8 +198,8 @@ export default {
 
 .board > .board-row > .board-cell
 {
-    width: 100px;
-    height: 100px;
+    width: calc(100% / 8);
+    padding-top: calc(100% / 8);
     background: white;
 }
 

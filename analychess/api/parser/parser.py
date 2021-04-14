@@ -128,7 +128,7 @@ class Move(object):
                 "sRow": movement[1],
                 "eFile": movement[2],
                 "eRow": movement[3],
-                "mPiece": str(movement[4]).lower(),
+                "mPiece": str(movement[4]),
             })
     
     def __repr__(self):
