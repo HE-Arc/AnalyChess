@@ -83,19 +83,12 @@ router.beforeEach((to, from, next) => {
     {
         next({name: "404"});
     }
-    else if (to.matched.some((route) => route.meta.onlyLogged)) {
-        if (!isLogged()) {
-            next({ name: "Login" });
-        } else {
-            next();
-        }
-    } else if (to.matched.some((route) => route.meta.onlyUnlogged)) {
-        if (isLogged()) {
-            next({ name: "Account" });
-        } else {
-            next();
-        }
-    } else {
+    else if (to.matched.some((route) => route.meta.onlyLogged))
+    {
+        next({ name: isLogged() ? "Account" : "Login" });
+    }
+    else
+    {
         next();
     }
 });
