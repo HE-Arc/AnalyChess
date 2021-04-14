@@ -3,12 +3,22 @@
     <div v-for="move in moves" :key="move.moveIndex">
         <span>{{move.moveIndex + 1}}. </span>
         <span
-            :class="{btn: true, 'btn-primary': move.whiteMove.highlight}"
+            :class="{
+                btn: true,
+                'btn-sm': true,
+                'btn-primary': move.whiteMove.highlight,
+                'btn-light': !move.whiteMove.highlight
+            }"
             @click="emitMoveChange(move.whiteMove.semiMoveIndex)"
         >{{move.whiteMove.move}} </span>
         <span
             v-if="move.blackMove"
-            :class="{btn: true, 'btn-primary': move.blackMove.highlight}"
+            :class="{
+                btn: true,
+                'btn-sm': true,
+                'btn-primary': move.blackMove.highlight,
+                'btn-light': !move.blackMove.highlight
+            }"
             @click="emitMoveChange(move.blackMove.semiMoveIndex)"
         >{{move.blackMove.move}} </span>
     </div>
