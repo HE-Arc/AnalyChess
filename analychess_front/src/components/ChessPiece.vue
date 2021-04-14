@@ -1,5 +1,5 @@
 <template>
-<div class="chesspiece" :style="style">
+<div :class="{chesspiece: true, hidden}" :style="style">
     <img src="../assets/black_king.png" alt="black king" v-if="piece === 'k'">
     <img src="../assets/black_queen.png" alt="black queen" v-if="piece === 'q'">
     <img src="../assets/black_rook.png" alt="black rook" v-if="piece === 'r'">
@@ -20,6 +20,10 @@
 export default {
     name: 'ChessPiece',
     props: {
+        hidden: {
+            type: Boolean,
+            required: true
+        },
         piece: {
             type: String,
             require: true
@@ -39,7 +43,7 @@ export default {
     },
     computed: {
         style() {
-            return `top: ${this.size * this.row}px;left: ${this.size * this.file}px;width:${this.size}px;height:${this.size}px`;
+            return `bottom: ${this.size * this.row}px;left: ${this.size * this.file}px;width:${this.size}px;height:${this.size}px`;
         }
     }
 }
@@ -50,7 +54,12 @@ export default {
 .chesspiece
 {
     position: absolute;
-    transition: top .5s, left .5s;
+    transition: bottom 250ms linear, left 250ms linear, opacity 250ms linear;
+}
+
+.chesspiece.hidden
+{
+    opacity: 0;
 }
 
 .chesspiece img
