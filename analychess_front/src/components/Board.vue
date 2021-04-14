@@ -1,26 +1,36 @@
 <template>
-<div>
-    <div class="board">
-        <div class="board-row" v-for="rowIndex in BOARD_SIZE" :key="rowIndex">
-            <div class="board-cell" v-for="fileIndex in BOARD_SIZE" :key="fileIndex"></div>
-        </div>
+<div class="row">
+    <div class="col">
+        <div class="board">
+            <div class="board-row" v-for="rowIndex in BOARD_SIZE" :key="rowIndex">
+                <div class="board-cell" v-for="fileIndex in BOARD_SIZE" :key="fileIndex"></div>
+            </div>
 
-        <ChessPiece
-            v-for="piece in pieces"
-            :size="100"
-            :key="piece.key"
-            :piece="piece.piece"
-            :row="piece.row"
-            :file="piece.file"
-            :hidden="piece.hidden"
-        />
+            <ChessPiece
+                v-for="piece in pieces"
+                :size="100"
+                :key="piece.key"
+                :piece="piece.piece"
+                :row="piece.row"
+                :file="piece.file"
+                :hidden="piece.hidden"
+            />
+        </div>
     </div>
 
-    <div>
-        <button class="btn btn-secondary" @click="firstMove">First</button>
-        <button class="btn btn-secondary" @click="prevMove">Prev</button>
-        <button class="btn btn-secondary" @click="nextMove">Next</button>
-        <button class="btn btn-secondary" @click="lastMove">Last</button>
+    <div class="col">
+        <MovesList
+            :pgnMoves="pgnMoves"
+            :selectedMoveIndex="0"
+            @move="moveAtIndex"
+        />
+
+        <div>
+            <button class="btn btn-secondary" @click="firstMove">First</button>
+            <button class="btn btn-secondary" @click="prevMove">Prev</button>
+            <button class="btn btn-secondary" @click="nextMove">Next</button>
+            <button class="btn btn-secondary" @click="lastMove">Last</button>
+        </div>
     </div>
 </div>
 </template>
@@ -28,6 +38,7 @@
 <script>
 
 import ChessPiece from "./ChessPiece.vue";
+import MovesList from "./MovesList.vue";
 import MoveAction from "../tools/MoveAction";
 const moves = require("../../moves.json");
 
@@ -49,7 +60,8 @@ const FILE_H = 7;
 export default {
     name: 'Board',
     components: {
-        ChessPiece
+        ChessPiece,
+        MovesList
     },
     data() {
         return {
@@ -65,6 +77,13 @@ export default {
         for(const {move} of moves.moves)
         {
             this.actions.push(new MoveAction(move.movements, this.pieces));
+        }
+    },
+    computed: {
+        pgnMoves() {
+            return moves.moves.map(m => {
+                return m.move.pgnMove;
+            });
         }
     },
     methods: {
