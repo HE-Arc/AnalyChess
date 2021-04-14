@@ -17,6 +17,8 @@
 
 <script>
 
+const BOARD_SIZE = 8;
+
 export default {
     name: 'ChessPiece',
     props: {
@@ -27,10 +29,6 @@ export default {
         piece: {
             type: String,
             require: true
-        },
-        size: {
-            type: Number,
-            required: true
         },
         file: {
             type: Number,
@@ -43,7 +41,7 @@ export default {
     },
     computed: {
         style() {
-            return `bottom: ${this.size * this.row}px;left: ${this.size * this.file}px;width:${this.size}px;height:${this.size}px`;
+            return `bottom:${100. / BOARD_SIZE * this.row}%;left:${100. / BOARD_SIZE * this.file}%`;
         }
     }
 }
@@ -54,6 +52,8 @@ export default {
 .chesspiece
 {
     position: absolute;
+    width: calc(100% / 8);
+    height: calc(100% / 8);
     transition: bottom 250ms linear, left 250ms linear, opacity 250ms linear;
 }
 

@@ -8,7 +8,6 @@
 
             <ChessPiece
                 v-for="piece in pieces"
-                :size="100"
                 :key="piece.key"
                 :piece="piece.piece"
                 :row="piece.row"
