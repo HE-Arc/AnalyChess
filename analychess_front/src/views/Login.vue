@@ -19,8 +19,7 @@ export default {
     data(){
         return{
           username : "",
-          password : "",
-          requester : APIRequester.getInstance(),
+          password : ""
         }
     },
     methods:
@@ -29,9 +28,9 @@ export default {
         {
             try
             {
-                await this.requester.login(this.username, this.password)
+                await APIRequester.getInstance().login(this.username, this.password)
                 // Login successful
-                router.push({name: "Account"})
+                router.push({name: "Home"})
             }
             catch(error)
             {

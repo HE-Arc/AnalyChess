@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
-import Account from '../views/Account.vue'
+import Home from '../views/Home.vue'
 import GameViewer from '../views/GameViewer.vue'
 import TestApi from '../views/TestAPI.vue'
 import Logout from '../views/Logout.vue'
@@ -26,8 +26,8 @@ const routes = [
     },
     {
         path: '/',
-        name: 'Account',
-        component: Account,
+        name: 'Home',
+        component: Home,
         meta: {
             onlyLogged: true
         }
@@ -44,6 +44,7 @@ const routes = [
         path: '/game',
         name: 'Game',
         component: GameViewer,
+        props: true,
         meta: {
             onlyLogged: true
         }
@@ -91,7 +92,7 @@ router.beforeEach((to, from, next) => {
         }
     } else if (to.matched.some((route) => route.meta.onlyUnlogged)) {
         if (isLogged()) {
-            next({ name: "Account" });
+            next({ name: "Home" });
         } else {
             next();
         }
