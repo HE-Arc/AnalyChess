@@ -2,8 +2,14 @@
 <div class="container">
     <div v-for="move in moves" :key="move.moveIndex">
         <span>{{move.moveIndex + 1}}. </span>
-        <span @click="emitMoveChange(move.moveIndex)">{{move.whiteMove}} </span>
-        <span @click="emitMoveChange(move.moveIndex, true)">{{move.blackMove}}</span>
+        <span
+            :class="{btn: true, 'btn-primary': selectedMoveIndex == move.moveIndex * 2 + 1}"
+            @click="emitMoveChange(move.moveIndex)"
+        >{{move.whiteMove}} </span>
+        <span
+            :class="{btn: true, 'btn-primary': selectedMoveIndex == move.moveIndex * 2 + 2}"
+            @click="emitMoveChange(move.moveIndex, true)"
+        >{{move.blackMove}} </span>
     </div>
 </div>
 </template>

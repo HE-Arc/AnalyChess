@@ -16,21 +16,21 @@
                 :hidden="piece.hidden"
             />
         </div>
-    </div>
-
-    <div class="col">
-        <MovesList
-            :pgnMoves="pgnMoves"
-            :selectedMoveIndex="0"
-            @move="moveAtIndex"
-        />
-
         <div>
             <button class="btn btn-secondary" @click="firstMove">First</button>
             <button class="btn btn-secondary" @click="prevMove">Prev</button>
             <button class="btn btn-secondary" @click="nextMove">Next</button>
             <button class="btn btn-secondary" @click="lastMove">Last</button>
         </div>
+    </div>
+
+    <div class="col">
+        <MovesList
+            :pgnMoves="pgnMoves"
+            :selectedMoveIndex="currentMoveIndex"
+            @move="moveAtIndex"
+        />
+
     </div>
 </div>
 </template>
