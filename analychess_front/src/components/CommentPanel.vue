@@ -1,6 +1,6 @@
 <template>
 <div>
-  <input type="text" v-model="comment"/>
+  <input type="text" v-model="comment" v-on:change="write"/>
 </div>
 </template>
 
@@ -8,21 +8,22 @@
 export default {
   name: 'CommentPanel',
       props: {
-
-        selectedMoveIndex: {
-            type: Number,
-            required: true
-        },
         game: null,
     },
   data(){
     return{
-      comment : this.game.moves[this.selectedMoveIndex].comment 
-    };
+      comment : "",
+      index: 1
+    }
   },
   methods: {
     write(){
-      this.game.moves[this.selectedMoveIndex].comment = this.comment
+      this.game.moves[this.index].comment = this.comment
+    },
+    read(_index)
+    {
+      this.index = _index;
+      this.comment = this.game.moves[this.index].comment
     }
   },
 

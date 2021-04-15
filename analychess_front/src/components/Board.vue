@@ -1,7 +1,7 @@
 <template>
 <div class="row">
     <div class="col">
-        <CommentPanel :selectedMoveIndex="currentMoveIndex"  v-bind:game="this.game"/>
+        <CommentPanel ref="commentPanel" :index="currentMoveIndex"  v-bind:game="this.game"/>
     </div>
     <div class="col">
         <div>
@@ -145,23 +145,28 @@ export default {
             {
                 this.prevMove();
             }
+                this.$refs.commentPanel.read(index)
         },
         hasNextMove() {
             return this.currentMoveIndex < this.actions.length;
         },
         nextMove() {
+
             if(this.hasNextMove())
             {
                 this.actions[this.currentMoveIndex++].apply();
+                this.$refs.commentPanel.read(this.currentMoveIndex)
             }
         },
         hasPrevMove() {
             return this.currentMoveIndex > 0;
         },
         prevMove() {
+
             if(this.hasPrevMove())
             {
                 this.actions[--this.currentMoveIndex].undo();
+                this.$refs.commentPanel.read(this.currentMoveIndex)
             }
         },
         lastMove() {
@@ -169,12 +174,14 @@ export default {
             {
                 this.nextMove();
             }
+            this.$refs.commentPanel.read(this.currentMoveIndex)
         },
         firstMove() {
             while(this.hasPrevMove())
             {
                 this.prevMove();
             }
+            this.$refs.commentPanel.read(this.currentMoveIndex)
         }
     },
     props: {
