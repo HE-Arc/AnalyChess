@@ -1,8 +1,11 @@
 <template>
 <div class="row">
     <div class="col">
+        <CommentPanel :selectedMoveIndex="currentMoveIndex"  v-bind:game="this.game"/>
+    </div>
+    <div class="col">
         <div>
-            <div class="board">
+            <div class="board" style="width : 80%;">
                 <div class="board-row" v-for="rowIndex in BOARD_SIZE" :key="rowIndex">
                     <div class="board-cell" v-for="fileIndex in BOARD_SIZE" :key="fileIndex"></div>
                 </div>
@@ -41,6 +44,7 @@
 import ChessPiece from "./ChessPiece.vue";
 import MovesList from "./MovesList.vue";
 import MoveAction from "../tools/MoveAction";
+import CommentPanel from './CommentPanel.vue';
 
 const WHITE = 0;
 const BLACK = 1;
@@ -61,7 +65,8 @@ export default {
     name: 'Board',
     components: {
         ChessPiece,
-        MovesList
+        MovesList,
+        CommentPanel
     },
     data() {
         return {
@@ -73,9 +78,10 @@ export default {
     },
     mounted() {
         this.resetBoard();
+        console.log(this.game)
         for(let {move} of this.game.moves)
         {   
-            console.log(move)
+            //console.log(move)
             this.actions.push(new MoveAction(move.movements, this.pieces));
         }
     },
