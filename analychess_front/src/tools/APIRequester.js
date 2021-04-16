@@ -11,8 +11,8 @@ export default class ApiRequester {
 
     static #instance = null;
     
-    //#BASE_URL = 'https://analychess.srvz-webapp.he-arc.ch/api/';
-    #BASE_URL = 'http://127.0.0.1:8000/api/';
+    #BASE_URL = 'https://analychess.srvz-webapp.he-arc.ch/api/';
+    //#BASE_URL = 'http://127.0.0.1:8000/api/';
     #REFRESH_URL = 'login/refresh'
     #route = null;
     #params = null;
