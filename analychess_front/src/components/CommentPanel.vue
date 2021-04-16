@@ -1,6 +1,6 @@
 <template>
 <div>
-  <input type="text" v-model="comment" v-on:change="write"/>
+  <input class= "comment-text" type="text" v-model="comment" v-on:change="write"/>
 </div>
 </template>
 
@@ -29,3 +29,11 @@ export default {
 
 }
 </script>
+<style>
+.comment-text
+{
+    height: 200px;
+    width: 400px;
+}
+
+</style>
