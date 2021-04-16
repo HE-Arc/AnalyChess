@@ -15,14 +15,14 @@
 import Board from '../components/Board.vue';
 
 export default {
-    name:"GameViewer",
-    components:{
-    Board,
-    },
-  props: {
-    game: null,
-    gameId: null
-  },
+		name:"GameViewer",
+		components:{
+		Board,
+		},
+	props: {
+		game: null,
+		gameId: null
+	},
 }
 
 </script> 

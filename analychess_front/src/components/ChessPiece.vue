@@ -52,6 +52,7 @@ export default {
 .chesspiece
 {
     position: absolute;
+    z-index: 2;
     width: calc(100% / 8);
     height: calc(100% / 8);
     transition: bottom 250ms linear, left 250ms linear, opacity 250ms linear;
