@@ -1,7 +1,7 @@
 <template>
   <div class="container d-flex justify-content-center">
     <div class="row justify-content-md-center d-inline-flex">
-      <div class="col ">
+      <div class="col p-0">
         <ul class="list-group">
           <li class="list-group-item">Good move</li>
           <li class="list-group-item">Mistake</li>
@@ -13,7 +13,7 @@
           <li class="list-group-item">Zugzwang</li>
         </ul>
       </div>
-      <div class="col ">
+      <div class="col p-0">
         <ul class="list-group">
           <li class="list-group-item">Equal position</li>
           <li class="list-group-item">Unclear position</li>
@@ -25,7 +25,7 @@
           <li class="list-group-item">Black is winning</li>
         </ul>
       </div>
-      <div class="col">
+      <div class="col p-0">
         <ul class="list-group">
           <li class="list-group-item">Novelty</li>
           <li class="list-group-item">Development</li>
@@ -51,4 +51,5 @@ export default {
 .list-group-item{
   width: 250px;
 }
+
 </style>

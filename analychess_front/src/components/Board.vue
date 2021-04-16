@@ -1,17 +1,17 @@
 <template>
-  <div class= "m-2">
-    <div class="row d-flex justify-content-center">
-      <div class="col-md-auto">
+  <div class= "m-2 p-5 ">
+    <div class="row d-flex justify-content-center " >
+      <div class="col-md-auto pr-5">
         <CommentPanel
           ref="commentPanel"
           :index="currentMoveIndex"
           v-bind:game="this.game"
         />
       </div>
-      <div class="col">
+      <div class="col-md-auto d-inline-flex justify-content-center ">
         <div class="row">
-        <div class="d-flex justify-content-center">
-          <div class="board" style="width: 60%">
+        <div class=" d-flex justify-content-center  ">
+          <div class="board" style="width: 100%; min-width : 400px">
             <div
               class="board-row"
               v-for="rowIndex in BOARD_SIZE"
@@ -34,7 +34,7 @@
             />
           </div>
           </div>
-          <div class="row justify-content-center">
+          <div class="row justify-content-center p-2 ">
             <div class="d-flex justify-content-center">
               <button class="btn btn-secondary" @click="firstMove">First</button>
               <button class="btn btn-secondary" @click="prevMove">Prev</button>

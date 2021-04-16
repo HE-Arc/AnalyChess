@@ -1,5 +1,5 @@
 <template>
-<ul class="list-group-moves ">
+<ul class="list-group-moves ml-0 pl-0">
     <li class="list-group-item"  v-for="move in moves" :key="move.moveIndex">
         <span>{{move.moveIndex + 1}}. </span>
         <span
@@ -81,7 +81,6 @@ export default {
 <style>
 .list-group-moves{
     max-height: 500px;
-    width: 400px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
