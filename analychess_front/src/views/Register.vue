@@ -1,17 +1,17 @@
 <template>
     <section>
         <h1>Register</h1>
-        <div>
+        <form @submit="try_register" >
             <label for="input_username">Username</label>
-            <input type="text" id="input_username" v-model="username" placeholder="Username">
+            <input type="text" id="input_username" v-model="username" placeholder="Username" required>
             <label for="input_password">Password</label>
-            <input type="password" id="input_password" v-model="password" placeholder="****">
+            <input type="password" id="input_password" v-model="password" placeholder="****" required>
             <label for="input_password_conf">Password's confirmation</label>
-            <input type="password" id="input_password_conf" v-model="conf_password" placeholder="****">
+            <input type="password" id="input_password_conf" v-model="conf_password" placeholder="****" required>
             <label for="input_email">Email</label>
-            <input type="email" id="input_email" v-model="email" placeholder="Email">
-            <input type="button" v-on:click="try_register"  id="input_register" value="Register">
-        </div>
+            <input type="email" id="input_email" v-model="email" placeholder="Email" required>
+            <input type="submit" id="input_register" value="Register">
+        </form>
         <div>
             <router-link to="/login">Login</router-link>
         </div>
@@ -35,8 +35,9 @@ export default {
     },
     methods:
     {
-        async try_register()
+        async try_register(e)
         {
+            e.preventDefault(e);
             if(this.password== this.conf_password)
             {
                 try
@@ -47,14 +48,14 @@ export default {
                 }
                 catch(error)
                 {
-                    // TODO : Remove and react
-                    console.log(error)
+                    // username already used
+                    this.$toasted.error('Username already used', {duration: 5000})
                 }
             }
             else
             {
-                // TODO: toast with password incorrect
-                console.log("password do not match")
+                // toast with password incorrect
+                this.$toasted.error('Password are differents !', {duration: 5000})
             }
             
         }

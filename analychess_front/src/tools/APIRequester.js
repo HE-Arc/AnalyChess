@@ -99,6 +99,12 @@ export default class ApiRequester {
         }
     }
 
+    /**
+     * Send a PUT request
+     * 
+     * @author Edouard Goffinet
+     * @returns Data of the request's response
+     */
     async put(){
         try{
             const response = await axios.put(this.#BASE_URL + this.#route, this.#params, {headers: {Authorization: `Bearer ${localStorage.getItem('access')}`}});
@@ -109,6 +115,12 @@ export default class ApiRequester {
         }
     }
 
+    /**
+     * Send a DELELTE request
+     * 
+     * @author Edouard Goffinet
+     * @returns Data of the request's response
+     */
     async delete(){
         try{
             const response = await axios.delete(this.#BASE_URL + this.#route, {headers: {Authorization: `Bearer ${localStorage.getItem('access')}`}});
@@ -132,10 +144,18 @@ export default class ApiRequester {
         this.setParam({'username': username, 'password': password});
         let data = await this.post();
 
-        localStorage.setItem('username', data.user);
-        localStorage.setItem('user_id', data.id)
-        localStorage.setItem('access', data.access);
-        localStorage.setItem('refresh', data.refresh);
+        if(data)
+        {
+            localStorage.setItem('username', data.user);
+            localStorage.setItem('user_id', data.id)
+            localStorage.setItem('access', data.access);
+            localStorage.setItem('refresh', data.refresh);
+        }
+        else
+        {
+            throw new Error();
+        }
+            
     }
 
     /**
@@ -192,12 +212,10 @@ export default class ApiRequester {
                 router.push({name: 'Login'});
             }
         }
-        // Others errors
-        // TODO : implement others errors gestion (400, 404, 500)...
+        // Others errors : propagate the error that has to be handle later
         else
         {
-            console.log(error.response);
-            console.error(error);
+            throw error
         }
     }
 
