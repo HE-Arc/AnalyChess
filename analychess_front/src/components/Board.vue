@@ -62,7 +62,9 @@
       </div>
     </div>
     <div class="row">
-      <SymbolPanel />
+      <SymbolPanel 
+          ref="symPanel"
+          v-bind:game="this.game"/>
     </div>
   </div>
 </template>
@@ -110,7 +112,7 @@ export default {
     };
   },
   mounted() {
-
+    console.log(this.game)
     this.resetBoard();
     this.id = this.gameId;
     this.title = this.game.title;
@@ -182,6 +184,7 @@ export default {
         this.prevMove();
       }
       this.$refs.commentPanel.read(index);
+      this.$refs.symPanel.read(index);
     },
     hasNextMove() {
       return this.currentMoveIndex < this.actions.length;
@@ -190,6 +193,7 @@ export default {
       if (this.hasNextMove()) {
         this.actions[this.currentMoveIndex++].apply();
         this.$refs.commentPanel.read(this.currentMoveIndex);
+      this.$refs.symPanel.read(this.currentMoveIndex);
       }
     },
     hasPrevMove() {
@@ -199,6 +203,7 @@ export default {
       if (this.hasPrevMove()) {
         this.actions[--this.currentMoveIndex].undo();
         this.$refs.commentPanel.read(this.currentMoveIndex);
+        this.$refs.symPanel.read(this.currentMoveIndex);
       }
     },
     lastMove() {
@@ -206,12 +211,14 @@ export default {
         this.nextMove();
       }
       this.$refs.commentPanel.read(this.currentMoveIndex);
+      this.$refs.symPanel.read(this.currentMoveIndex);
     },
     firstMove() {
       while (this.hasPrevMove()) {
         this.prevMove();
       }
       this.$refs.commentPanel.read(this.currentMoveIndex);
+      this.$refs.symPanel.read(this.currentMoveIndex);
     },
     async save(){
       try

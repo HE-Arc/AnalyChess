@@ -70,8 +70,8 @@ class MoveSerializer:
             
         m['move']['pgnMove'] = move.pgnMove
 
-        m['moveStrength'] = 0
-        m['PosEvaluation'] = 0
+        m['moveStrength'] = -1
+        m['PosEvaluation'] = -1
         m['tags'] = []
         return m
 
