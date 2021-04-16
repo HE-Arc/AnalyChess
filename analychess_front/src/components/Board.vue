@@ -53,7 +53,8 @@
       </div>
 
       <div class="col-md-auto">
-        <MovesList
+        <label class=" pb-1">Moves </label>
+        <MovesList 
           :pgnMoves="pgnMoves"
           :selectedMoveIndex="currentMoveIndex"
           @move="moveAtIndex"

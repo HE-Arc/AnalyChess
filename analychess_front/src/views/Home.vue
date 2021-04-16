@@ -7,8 +7,42 @@
         <router-link to="/test">Test</router-link>
         <router-link to="/logout">Logout</router-link>
         <div class="container">
-            <div class="row row-cols-4">
+            <div class="row row-cols-4 ">
                 <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+                <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game"/>
+
             </div>
         </div>
         <button class="btn btn-info" v-on:click="lol">New analysis</button>

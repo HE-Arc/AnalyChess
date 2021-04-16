@@ -1,6 +1,6 @@
 <template>
-<div class="card" style="width: 18rem;">
-  <img src="../assets/chesspiece.svg" class="card-img-top" alt="chess">
+<div class="card m-2 " style="width: 18rem;">
+  <img src="../assets/chesspiece.svg" class="card-img-top mx-auto " alt="chess" style="width: 200px;">
   <div class="card-body">
     <h5 class="card-title">{{game.title}}</h5>
     <p class="card-text">{{game.description}}</p>
