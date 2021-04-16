@@ -3,12 +3,16 @@ from .models import Game, MyUser
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .permissions import IsOwnerOrReadOnly, IsMeOrReadOnly
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from .parser.parser import parse
 from django.http import JsonResponse
 from rest_framework import status
+import jwt
+import datetime
+from time import sleep
+from django.conf import settings
 
 
 
@@ -58,3 +62,29 @@ class GameDetail(generics.RetrieveUpdateDestroyAPIView):
 def upload_pgn(request):
     pgn = parse(request.data['pgn'])
     return JsonResponse(AnalysisSerializer().serialize(pgn), safe=False)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def share(request):
+    encoded_jwt = jwt.encode({"gameId": request.data['id'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60*60)}, settings.SECRET_KEY, algorithm="HS256")
+    return JsonResponse({"token": encoded_jwt})
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def join(request):
+    try:
+        # decode the token
+        game_id = jwt.decode(
+            request.query_params["token"], settings.SECRET_KEY, algorithms=["HS256"]
+        )
+        
+    except:
+        return JsonResponse({"code": 400, "message": "invalid token"})
+
+    Game.objects.filter(id=game_id["gameId"]).get().owner.add(request.user.id)
+
+
+    return JsonResponse({"code": 200})
+    
+

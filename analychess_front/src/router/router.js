@@ -7,6 +7,7 @@ import GameViewer from '../views/GameViewer.vue'
 import TestApi from '../views/TestAPI.vue'
 import Logout from '../views/Logout.vue'
 import E404 from '../views/E404.vue'
+import Join from '../views/Join.vue'
 
 
 // Use Vue plugins
@@ -53,6 +54,15 @@ const routes = [
         path: '/game',
         name: 'Game',
         component: GameViewer,
+        props: true,
+        meta: {
+            onlyLogged: true
+        }
+    },
+    {
+        path: '/join/:token',
+        name: 'Join',
+        component: Join,
         props: true,
         meta: {
             onlyLogged: true

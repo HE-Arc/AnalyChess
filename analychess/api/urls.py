@@ -8,5 +8,6 @@ urlpatterns = [
     path('game', views.GameList.as_view(), name='game-list'),
     path('game/<int:pk>', views.GameDetail.as_view()),
     path('', views.api_root),
-    
+    path('share', views.share),
+    path('join', views.join)
 ]

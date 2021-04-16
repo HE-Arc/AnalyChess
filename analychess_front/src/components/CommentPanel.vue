@@ -20,7 +20,7 @@ export default {
     return {
       comment: "",
       index: 1,
-    };
+    }
   },
   methods: {
     write() {

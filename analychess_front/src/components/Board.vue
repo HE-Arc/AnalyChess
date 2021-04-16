@@ -14,6 +14,7 @@
         />
         <button type="button" class="btn btn-lg btn-secondary m-2" @click="save">Save</button>
         <button type="button" class="btn btn-lg btn-secondary m-2" @click="share">Share</button>
+        <button type="button" class="btn btn-lg btn-secondary m-2" @click="del">Delete</button>
       </div>
       <div class="col-md-auto d-inline-flex justify-content-center">
         <div class="row">
@@ -61,7 +62,9 @@
       </div>
     </div>
     <div class="row">
-      <SymbolPanel />
+      <SymbolPanel 
+          ref="symPanel"
+          v-bind:game="this.game"/>
     </div>
   </div>
 </template>
@@ -109,11 +112,11 @@ export default {
     };
   },
   mounted() {
+    console.log(this.game)
     this.resetBoard();
     this.id = this.gameId;
     this.title = this.game.title;
     this.description = this.game.description;
-    console.log(this.game);
     for (let { move } of this.game.moves) {
       //console.log(move)
       this.actions.push(new MoveAction(move.movements, this.pieces));
@@ -181,6 +184,7 @@ export default {
         this.prevMove();
       }
       this.$refs.commentPanel.read(index);
+      this.$refs.symPanel.read(index);
     },
     hasNextMove() {
       return this.currentMoveIndex < this.actions.length;
@@ -189,6 +193,7 @@ export default {
       if (this.hasNextMove()) {
         this.actions[this.currentMoveIndex++].apply();
         this.$refs.commentPanel.read(this.currentMoveIndex);
+      this.$refs.symPanel.read(this.currentMoveIndex);
       }
     },
     hasPrevMove() {
@@ -198,6 +203,7 @@ export default {
       if (this.hasPrevMove()) {
         this.actions[--this.currentMoveIndex].undo();
         this.$refs.commentPanel.read(this.currentMoveIndex);
+        this.$refs.symPanel.read(this.currentMoveIndex);
       }
     },
     lastMove() {
@@ -205,12 +211,14 @@ export default {
         this.nextMove();
       }
       this.$refs.commentPanel.read(this.currentMoveIndex);
+      this.$refs.symPanel.read(this.currentMoveIndex);
     },
     firstMove() {
       while (this.hasPrevMove()) {
         this.prevMove();
       }
       this.$refs.commentPanel.read(this.currentMoveIndex);
+      this.$refs.symPanel.read(this.currentMoveIndex);
     },
     async save(){
       try
@@ -223,7 +231,8 @@ export default {
         }
         else
         {
-          let data = await ApiRequester.getInstance().setRoute('game').setParam(this.game).post()
+          let data = await ApiRequester.getInstance().setRoute('game').setParam(this.game).post();
+          console.log(data)
           this.id = data.id;
 
         }
@@ -236,9 +245,45 @@ export default {
         console.log(error)
       }
     },
-    share()
+    async share()
     {
-      console.log("Sahre");
+      if(this.id != null)
+      {
+        try{
+
+          let data = await ApiRequester.getInstance().setRoute("share").setParam({"id": this.id}).post();
+          console.log(data)
+          navigator.clipboard.writeText(`https://analychess.srvz-webapp.he-arc.ch/#/join/${data.token}`)
+          //TODO toast copied
+        }
+        catch(e)
+        {
+          console.log(e)
+        }
+      }
+      else{
+        //TODO toat error
+        console.log("not id")
+      }
+    },
+    async del()
+    {
+      if(this.id != null)
+      {
+        try{
+
+          await ApiRequester.getInstance().setRoute(`game/${this.id}`).delete();
+          this.$router.push({name:'Home'})
+        }
+        catch(e)
+        {
+          console.log(e)
+        }
+      }
+      else{
+        //TODO toat error
+        console.log("not id")
+      }
     }
   },
   props: {
