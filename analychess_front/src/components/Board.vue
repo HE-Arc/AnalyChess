@@ -43,12 +43,10 @@
           </div>
           <div class="row justify-content-center p-2">
             <div class="d-flex justify-content-center">
-              <button class="btn btn-secondary" @click="firstMove">
-                First
-              </button>
-              <button class="btn btn-secondary" @click="prevMove">Prev</button>
-              <button class="btn btn-secondary" @click="nextMove">Next</button>
-              <button class="btn btn-secondary" @click="lastMove">Last</button>
+              <button class="btn btn-secondary m-1" @click="firstMove">First</button>
+              <button class="btn btn-secondary m-1" @click="prevMove">Prev</button>
+              <button class="btn btn-secondary m-1" @click="nextMove">Next</button>
+              <button class="btn btn-secondary m-1" @click="lastMove">Last</button>
             </div>
           </div>
         </div>
