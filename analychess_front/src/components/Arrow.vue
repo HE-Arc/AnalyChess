@@ -62,7 +62,6 @@ export default {
 
 <style>
 
-
 .arrow
 {
     position: absolute;
