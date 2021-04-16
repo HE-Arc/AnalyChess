@@ -39,6 +39,16 @@
 								:file="piece.file"
 								:hidden="piece.hidden"
 							/>
+
+                            <Arrow
+                                v-for="arrow in arrows"
+                                :key="arrow.id"
+                                :sFile="arrow.sFile"
+                                :sRow="arrow.sRow"
+                                :eFile="arrow.eFile"
+                                :eRow="arrow.eRow"
+                                :color="arrow.color"
+                            />
 						</div>
 					</div>
 					<div class="row justify-content-center p-2">
@@ -68,6 +78,7 @@
 
 <script>
 import ChessPiece from "./ChessPiece.vue";
+import Arrow from "./Arrow.vue";
 import MovesList from "./MovesList.vue";
 import MoveAction from "../tools/MoveAction";
 import CommentPanel from "./CommentPanel.vue";
@@ -96,11 +107,21 @@ export default {
 		MovesList,
 		CommentPanel,
 		SymbolPanel,
+        Arrow
 	},
 	data() {
 		return {
 			BOARD_SIZE: 8,
 			pieces: [],
+            arrows: [{
+                id: "arrow_0",
+                sFile: 2,
+                sRow: 4,
+                eFile: 5,
+                eRow: 6,
+                color: "#FF0000"
+            }],
+            highlightedCells: [],
 			actions: [],
 			currentMoveIndex: 0,
 			title: "Title",
@@ -229,7 +250,6 @@ export default {
 				}
 
 				//TODO toast ok
-				
 			}
 			catch(error)
 			{
@@ -279,6 +299,10 @@ export default {
 	bottom: 0;  
 	left: 0;  
 	right: 0;  
+}
+.board > .board-row > .board-cell.blue::after
+{
+    background: blue;
 }
 
 .board > .board-row:nth-of-type(2n + 1) > .board-cell:nth-of-type(2n),
