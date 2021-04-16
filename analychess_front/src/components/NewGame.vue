@@ -10,19 +10,19 @@
 import ApiRequester from '../tools/APIRequester'
 
 export default {
-  name: 'NewGame',
-    data()
-    {
-        return{
-            pgn: "",
+	name: 'NewGame',
+		data()
+		{
+            return{
+                    pgn: "",
+            }
+		},
+	methods:{
+        async ok()
+        {
+            let game = await ApiRequester.getInstance().setParam({"pgn": this.pgn}).setRoute("upload_pgn").post();
+            this.$router.push({name: "Game", params: {game: game}})
         }
-    },
-  methods:{
-      async ok()
-      {
-        let game = await ApiRequester.getInstance().setParam({"pgn": this.pgn}).setRoute("upload_pgn").post();
-        this.$router.push({name: "Game", params: {game: game}})
-      }
-  }
+	}
 }
 </script>
