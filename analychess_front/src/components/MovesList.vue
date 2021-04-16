@@ -1,6 +1,6 @@
 <template>
-<div class="container">
-    <div v-for="move in moves" :key="move.moveIndex">
+<ul class="list-group-moves ml-0 pl-0">
+    <li class="list-group-item"  v-for="move in moves" :key="move.moveIndex">
         <span>{{move.moveIndex + 1}}. </span>
         <span
             :class="{
@@ -21,8 +21,8 @@
             }"
             @click="emitMoveChange(move.blackMove.semiMoveIndex)"
         >{{move.blackMove.move}} </span>
-    </div>
-</div>
+    </li>
+</ul>
 </template>
 
 <script>
@@ -78,3 +78,10 @@ export default {
 }
 </script>
 
+<style>
+.list-group-moves{
+    max-height: 500px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+</style>

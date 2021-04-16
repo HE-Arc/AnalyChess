@@ -10,7 +10,6 @@ export default class ApiRequester {
     
 
     static #instance = null;
-    
     #BASE_URL = 'https://analychess.srvz-webapp.he-arc.ch/api/';
     //#BASE_URL = 'http://127.0.0.1:8000/api/';
     #REFRESH_URL = 'login/refresh'
@@ -105,9 +104,9 @@ export default class ApiRequester {
      * @author Edouard Goffinet
      * @returns Data of the request's response
      */
-    async put(){
+    async patch(){
         try{
-            const response = await axios.put(this.#BASE_URL + this.#route, this.#params, {headers: {Authorization: `Bearer ${localStorage.getItem('access')}`}});
+            const response = await axios.patch(this.#BASE_URL + this.#route, this.#params, {headers: {Authorization: `Bearer ${localStorage.getItem('access')}`}});
             return response.data;
         }
         catch(error){
@@ -200,7 +199,7 @@ export default class ApiRequester {
                     case 'POST':
                         return await this.post();
                     case 'PUT':
-                        return await this.put();
+                        return await this.patch();
                     case 'DELETE':
                         return await this.delete();
                 }

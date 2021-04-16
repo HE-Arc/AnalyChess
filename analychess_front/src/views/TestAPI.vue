@@ -49,7 +49,7 @@ export default {
         console.log(data)
     },
     async put() {
-        let data = await this.requester.setRoute("user/13").setParam({"username": "lol1asdasd2", "password": "test", "email": "test2@gmail.com", "games" : []}).put();
+        let data = await this.requester.setRoute("user/13").setParam({"username": "lol1asdasd2", "password": "test", "email": "test2@gmail.com", "games" : []}).patch();
         console.log(data)
     },
     async del() {
@@ -72,7 +72,7 @@ export default {
         this.game = data
     },
     async put_game() {
-        let data = await this.requester.setParam({"title" : "title2", "result": "result1", "description": "desc1", "moves": this.game}).setRoute("game/26").put();
+        let data = await this.requester.setParam({"title" : "title2", "result": "result1", "description": "desc1", "moves": this.game}).setRoute("game/30").patch();
         console.log(data)
         this.game = data
     },
