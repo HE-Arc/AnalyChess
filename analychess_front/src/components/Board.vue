@@ -3,17 +3,17 @@
     <div class="row d-flex justify-content-center">
       <div class="col-md-auto">
         <label for="inputTitle">Title</label>
-        <input type="text" class="form-control" id="inputTitle" />
+        <input type="text" class="form-control" id="inputTitle"  v-model="title"/>
         <label for="inputDescription">Description</label>
-        <textarea class="form-control mb-2" id="inputDescription" />
+        <textarea class="form-control mb-2" id="inputDescription" v-model="description"/>
         <label for="comment">Comment</label>
         <CommentPanel
           ref="commentPanel"
           :index="currentMoveIndex"
           v-bind:game="this.game"
         />
-        <button type="button" class="btn btn-lg btn-secondary m-2">save</button>
-        <button type="button" class="btn btn-lg btn-secondary m-2">share</button>
+        <button type="button" class="btn btn-lg btn-secondary m-2" @click="save">Save</button>
+        <button type="button" class="btn btn-lg btn-secondary m-2" @click="share">Share</button>
       </div>
       <div class="col-md-auto d-inline-flex justify-content-center">
         <div class="row">
@@ -72,6 +72,7 @@ import MovesList from "./MovesList.vue";
 import MoveAction from "../tools/MoveAction";
 import CommentPanel from "./CommentPanel.vue";
 import SymbolPanel from "./SymbolPanel.vue";
+import ApiRequester from '../tools/APIRequester';
 
 const WHITE = 0;
 const BLACK = 1;
@@ -102,10 +103,16 @@ export default {
       pieces: [],
       actions: [],
       currentMoveIndex: 0,
+      title: "Title",
+      description: "Description",
+      id: null
     };
   },
   mounted() {
     this.resetBoard();
+    this.id = this.game_id;
+    this.title = this.game.title;
+    this.description = this.game.description;
     console.log(this.game);
     for (let { move } of this.game.moves) {
       //console.log(move)
@@ -205,6 +212,34 @@ export default {
       }
       this.$refs.commentPanel.read(this.currentMoveIndex);
     },
+    async save(){
+      try
+      {
+        this.game.title = this.title;
+        this.game.description = this.description;
+        if (this.id != null)
+        {
+          await ApiRequester.getInstance().setRoute(`game/${this.id}`).setParam(this.game).put()
+        }
+        else
+        {
+          let data = await ApiRequester.getInstance().setRoute('game').setParam(this.game).post()
+          this.id = data.id;
+
+        }
+
+        //TODO toast ok
+        
+      }
+      catch(error)
+      {
+        console.log(error)
+      }
+    },
+    share()
+    {
+      console.log("Sahre");
+    }
   },
   props: {
     selectedMoveIndex: {
@@ -212,6 +247,7 @@ export default {
       required: true,
     },
     game: null,
+    game_id: null,
   },
 };
 </script>

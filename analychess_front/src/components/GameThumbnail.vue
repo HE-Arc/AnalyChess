@@ -14,12 +14,12 @@
 export default {
   name: 'GameThumnail',
   props: {
-    game: null
+    game: null,
   },
   methods:{
       viewGame()
       {
-        this.$router.push({name: "Game", params: {game: this.game}})
+        this.$router.push({name: "Game", params: {game_id: this.game.id, game: this.game}})
       }
   }
 }

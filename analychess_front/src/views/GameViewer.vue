@@ -6,7 +6,7 @@
         <router-link to="/game">Game</router-link>
         <router-link to="/test">Test</router-link>
         <router-link to="/logout">Logout</router-link>
-        <Board :selectedMoveIndex="1" v-bind:game="this.game"/>
+        <Board :selectedMoveIndex="1" v-bind:game="this.game" v-bind:game_id="this.game_id"/>
     </section>
 </template>
 
@@ -20,7 +20,8 @@ export default {
     Board,
     },
   props: {
-    game: null
+    game: null,
+    game_id: null
   },
 }
 
