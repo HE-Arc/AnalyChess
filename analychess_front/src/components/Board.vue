@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class= "m-2">
     <div class="row d-flex justify-content-center">
       <div class="col-md-auto">
         <CommentPanel

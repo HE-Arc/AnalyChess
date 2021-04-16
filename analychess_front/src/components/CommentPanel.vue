@@ -1,6 +1,6 @@
 <template>
 <div>
-  <input class= "comment-text" type="text" v-model="comment" v-on:change="write"/>
+  <textarea class= "comment-text" rows="15" type="text" v-model="comment" v-on:change="write"/>
 </div>
 </template>
 
@@ -32,7 +32,6 @@ export default {
 <style>
 .comment-text
 {
-    height: 200px;
     width: 400px;
 }
 
