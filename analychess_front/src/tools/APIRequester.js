@@ -11,8 +11,8 @@ export default class ApiRequester {
 
     static #instance = null;
     
-    #BASE_URL = 'https://analychess.srvz-webapp.he-arc.ch/api/';
-    //#BASE_URL = 'http://127.0.0.1:8000/api/';
+    //#BASE_URL = 'https://analychess.srvz-webapp.he-arc.ch/api/';
+    #BASE_URL = 'http://127.0.0.1:8000/api/';
     #REFRESH_URL = 'login/refresh'
     #route = null;
     #params = null;
@@ -89,9 +89,9 @@ export default class ApiRequester {
      * @author Edouard Goffinet
      * @returns Data of the request's response
      */
-    async post(){
+    async post(token = true){
         try{
-            const response = await axios.post(this.#BASE_URL + this.#route, this.#params, {headers: {Authorization: `Bearer ${localStorage.getItem('access')}`}});
+            const response = await axios.post(this.#BASE_URL + this.#route, this.#params, token ? {headers: {Authorization: `Bearer ${localStorage.getItem('access')}` }}: {});
             return response.data;
         }
         catch(error){

@@ -41,7 +41,7 @@ export default {
             {
                 try
                 {
-                    await APIRequester.getInstance().setRoute("user").setParam({"username": this.username, "password": this.password, "email": this.email, "games" : []}).post();
+                    await APIRequester.getInstance().setRoute("user").setParam({"username": this.username, "password": this.password, "email": this.email, "games" : []}).post(false);
                     // Login successful
                     router.push({name: "Login"})
                 }
