@@ -18,7 +18,7 @@
 			<div class="col-md-auto d-inline-flex justify-content-center">
 				<div class="row">
 					<div class="d-flex justify-content-center">
-						<div class="board" style="width: 100%; min-width: 400px">
+						<div class="board">
 							<div
 								class="board-row"
 								v-for="rowIndex in BOARD_SIZE"
@@ -41,13 +41,21 @@
 							/>
 
                             <Arrow
-                                v-for="arrow in arrows"
-                                :key="arrow.id"
+                                v-for="(arrow, index) in arrows"
+                                :key="`arrow_${index}`"
                                 :sFile="arrow.sFile"
                                 :sRow="arrow.sRow"
                                 :eFile="arrow.eFile"
                                 :eRow="arrow.eRow"
                                 :color="arrow.color"
+                            />
+                            <Arrow
+                                v-if="currentArrow"
+                                :sFile="currentArrow.sFile"
+                                :sRow="currentArrow.sRow"
+                                :eFile="currentArrow.eFile"
+                                :eRow="currentArrow.eRow"
+                                :color="currentArrow.color"
                             />
 						</div>
 					</div>
@@ -113,14 +121,7 @@ export default {
 		return {
 			BOARD_SIZE: 8,
 			pieces: [],
-            arrows: [{
-                id: "arrow_0",
-                sFile: 2,
-                sRow: 4,
-                eFile: 5,
-                eRow: 6,
-                color: "#FF0000"
-            }],
+            currentArrow: null,
             highlightedCells: [],
 			actions: [],
 			currentMoveIndex: 0,
@@ -278,6 +279,8 @@ export default {
 	display: flex;
 	position: relative;
 	flex-direction: column;
+    width: 100%;
+    min-width: 400px;
 }
 
 .board > .board-row {
