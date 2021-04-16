@@ -1,13 +1,13 @@
 <template>
     <section>
         <h1>Login</h1>
-        <div>
+        <form @submit="try_login" >
             <label for="input_username">Username</label>
-            <input type="text" id="input_username" v-model="username" placeholder="Username">
+            <input type="text" id="input_username" v-model="username" placeholder="Username" required>
             <label for="input_password">Password</label>
-            <input type="password" id="input_password" v-model="password" placeholder="****">
-            <input type="button" v-on:click="try_login"  id="input_login" value="Login">
-        </div>
+            <input type="password" id="input_password" v-model="password" placeholder="****" required>
+            <input type="submit" id="input_login" value="Login">
+        </form>
         <div>
             <router-link to="/register">Register</router-link>
         </div>
@@ -29,8 +29,9 @@ export default {
     },
     methods:
     {
-        async try_login()
+        async try_login(e)
         {
+            e.preventDefault();
             try
             {
                 await APIRequester.getInstance().login(this.username, this.password)
@@ -39,8 +40,7 @@ export default {
             }
             catch(error)
             {
-                // TODO : Remove and react
-                console.log(error)
+                this.$toasted.error('Username does not exist or credentials do not match', {duration: 5000})
             }
         }
     }
