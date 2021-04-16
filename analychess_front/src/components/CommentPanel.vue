@@ -13,13 +13,17 @@
 <script>
 export default {
   name: "CommentPanel",
+  monted()
+  {
+    this.read(0);
+  },
   props: {
     game: null,
   },
   data() {
     return {
       comment: "",
-      index: 1,
+      index: 0,
     }
   },
   methods: {
