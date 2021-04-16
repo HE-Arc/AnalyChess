@@ -1,7 +1,7 @@
 <template>
   <div>
     <textarea
-      class="comment-text "
+      class="comment-text form-control"
       rows="15"
       type="text"
       v-model="comment"

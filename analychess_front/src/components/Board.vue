@@ -1,42 +1,51 @@
 <template>
-  <div class= "m-2 p-5 ">
-    <div class="row d-flex justify-content-center " >
-      <div class="col-md-auto pr-5">
+  <div class="m-2 p-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-auto">
+        <label for="inputTitle">Title</label>
+        <input type="text" class="form-control" id="inputTitle" />
+        <label for="inputDescription">Description</label>
+        <textarea class="form-control mb-2" id="inputDescription" />
+        <label for="comment">Comment</label>
         <CommentPanel
           ref="commentPanel"
           :index="currentMoveIndex"
           v-bind:game="this.game"
         />
+        <button type="button" class="btn btn-lg btn-secondary m-2">save</button>
+        <button type="button" class="btn btn-lg btn-secondary m-2">share</button>
       </div>
-      <div class="col-md-auto d-inline-flex justify-content-center ">
+      <div class="col-md-auto d-inline-flex justify-content-center">
         <div class="row">
-        <div class=" d-flex justify-content-center  ">
-          <div class="board" style="width: 100%; min-width : 400px">
-            <div
-              class="board-row"
-              v-for="rowIndex in BOARD_SIZE"
-              :key="rowIndex"
-            >
+          <div class="d-flex justify-content-center">
+            <div class="board" style="width: 100%; min-width: 400px">
               <div
-                class="board-cell"
-                v-for="fileIndex in BOARD_SIZE"
-                :key="fileIndex"
-              ></div>
-            </div>
+                class="board-row"
+                v-for="rowIndex in BOARD_SIZE"
+                :key="rowIndex"
+              >
+                <div
+                  class="board-cell"
+                  v-for="fileIndex in BOARD_SIZE"
+                  :key="fileIndex"
+                ></div>
+              </div>
 
-            <ChessPiece
-              v-for="piece in pieces"
-              :key="piece.key"
-              :piece="piece.piece"
-              :row="piece.row"
-              :file="piece.file"
-              :hidden="piece.hidden"
-            />
+              <ChessPiece
+                v-for="piece in pieces"
+                :key="piece.key"
+                :piece="piece.piece"
+                :row="piece.row"
+                :file="piece.file"
+                :hidden="piece.hidden"
+              />
+            </div>
           </div>
-          </div>
-          <div class="row justify-content-center p-2 ">
+          <div class="row justify-content-center p-2">
             <div class="d-flex justify-content-center">
-              <button class="btn btn-secondary" @click="firstMove">First</button>
+              <button class="btn btn-secondary" @click="firstMove">
+                First
+              </button>
               <button class="btn btn-secondary" @click="prevMove">Prev</button>
               <button class="btn btn-secondary" @click="nextMove">Next</button>
               <button class="btn btn-secondary" @click="lastMove">Last</button>
@@ -230,6 +239,9 @@ export default {
 .board > .board-row:nth-of-type(2n + 1) > .board-cell:nth-of-type(2n),
 .board > .board-row:nth-of-type(2n) > .board-cell:nth-of-type(2n + 1) {
   background: Teal;
+}
+textarea {
+  resize: none;
 }
 </style>
 
