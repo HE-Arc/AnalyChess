@@ -1,5 +1,5 @@
 <template>
-<div class="arrow" :style="style"></div>
+<div :class="{arrow: true, arrowline: !isCell, arrowcell: isCell}" :style="style"></div>
 </template>
 
 <script>
@@ -32,20 +32,32 @@ export default {
         },
     },
     computed: {
+        isCell() {
+            return this.sFile == this.eFile && this.sRow == this.eRow;
+        },
         style() {
             const arrowLength = Math.sqrt(Math.pow(this.sFile - this.eFile, 2) + Math.pow(this.sRow - this.eRow, 2));
             const rotation = Math.atan2(this.eRow - this.sRow, this.eFile - this.sFile);
 
-            console.log(rotation);
+            let style = `background:${this.color};`
+            if(!this.isCell)
+            {
+                style += `width: ${100. / BOARD_SIZE * arrowLength}%;`;
+                style += `transform: rotate(${-rotation}rad);`;
+                style += `bottom: ${100. / BOARD_SIZE * (this.sRow) + 50. / BOARD_SIZE - ARROW_PERCENT_SIZE / 2}%;`;
+                style += `left: ${100. / BOARD_SIZE * (this.sFile) + 50. / BOARD_SIZE}%;`;
+                style += `border-color:${this.color};`;
+            }
+            else
+            {
+                console.log("what");
+                style += `bottom: ${100. / BOARD_SIZE * this.sRow}%;`;
+                style += `left: ${100. / BOARD_SIZE * this.sFile}%;`;
+            }
 
-            return  `
-                width: ${100. / BOARD_SIZE * arrowLength}%;
-                bottom: ${100. / BOARD_SIZE * (this.sRow) + 50. / BOARD_SIZE - ARROW_PERCENT_SIZE / 2}%;
-                left: ${100. / BOARD_SIZE * (this.sFile) + 50. / BOARD_SIZE}%;
-                transform: rotate(${-rotation}rad);
-                background:${this.color};
-                border-color:${this.color};
-            `;
+            console.log(style)
+
+            return style;
         }
     }
 }
@@ -53,16 +65,21 @@ export default {
 
 <style>
 
+
 .arrow
 {
     position: absolute;
+    opacity: 0.7;
+}
+.arrow.arrowline
+{
+    z-index: 3; /* In top of the piece */
     height: calc(100% / 40);
-    opacity: .5;
     transform-origin: center left;
     transition: width 100ms linear, transform 100ms linear, color 100ms;
 }
 
-.arrow::after
+.arrow.arrowline::after
 {
     position: absolute;
     box-sizing: border-box;
@@ -75,6 +92,13 @@ export default {
     border-style: solid;
     border-bottom-color: transparent;
     border-left-color: transparent;
+}
+
+.arrow.arrowcell
+{
+    z-index: 1; /* Bellow the piece */
+    width: calc(100% / 8); 
+    height: calc(100% / 8); 
 }
 
 </style>
