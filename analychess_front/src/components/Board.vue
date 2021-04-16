@@ -110,7 +110,7 @@ export default {
   },
   mounted() {
     this.resetBoard();
-    this.id = this.game_id;
+    this.id = this.gameId;
     this.title = this.game.title;
     this.description = this.game.description;
     console.log(this.game);
@@ -247,7 +247,7 @@ export default {
       required: true,
     },
     game: null,
-    game_id: null,
+    gameId: null,
   },
 };
 </script>

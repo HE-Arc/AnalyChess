@@ -26,8 +26,8 @@ export default {
     write() {
       this.game.moves[this.index].comment = this.comment;
     },
-    read(_index) {
-      this.index = _index;
+    read(index) {
+      this.index = index;
       this.comment = this.game.moves[this.index].comment;
     },
   },

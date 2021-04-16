@@ -14,7 +14,7 @@
 export default {
   name: 'GameThumnail',
   props: {
-    game: null,
+    game: null
   },
   methods:{
       viewGame()
