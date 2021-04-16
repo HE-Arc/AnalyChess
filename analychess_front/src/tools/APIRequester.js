@@ -10,7 +10,9 @@ export default class ApiRequester {
     
 
     static #instance = null;
+    
     #BASE_URL = 'https://analychess.srvz-webapp.he-arc.ch/api/';
+    //#BASE_URL = 'http://127.0.0.1:8000/api/';
     #REFRESH_URL = 'login/refresh'
     #route = null;
     #params = null;
@@ -77,7 +79,7 @@ export default class ApiRequester {
             return response.data;
         }
         catch(error){
-            return await this.handleError(error, 'GET')
+            return await this.handleError(error, 'GET');
         }
     }
 
@@ -93,7 +95,7 @@ export default class ApiRequester {
             return response.data;
         }
         catch(error){
-            return await this.handleError(error, 'POST')
+            return await this.handleError(error, 'POST');
         }
     }
 
@@ -103,7 +105,7 @@ export default class ApiRequester {
             return response.data;
         }
         catch(error){
-            return await this.handleError(error, 'PUT')
+            return await this.handleError(error, 'PUT');
         }
     }
 
@@ -113,7 +115,7 @@ export default class ApiRequester {
             return response.data;
         }
         catch(error){
-            return await this.handleError(error, 'DELETE')
+            return await this.handleError(error, 'DELETE');
         }
     }
 
@@ -126,9 +128,12 @@ export default class ApiRequester {
      */
     async login(username, password)
     {
-        this.setRoute('login')
-        this.setParam({'username': username, 'password': password})
+        this.setRoute('login');
+        this.setParam({'username': username, 'password': password});
         let data = await this.post();
+
+        localStorage.setItem('username', data.user);
+        localStorage.setItem('user_id', data.id)
         localStorage.setItem('access', data.access);
         localStorage.setItem('refresh', data.refresh);
     }
@@ -150,6 +155,7 @@ export default class ApiRequester {
             void(0)
         }
         localStorage.removeItem('access');
+        localStorage.removeItem("user");
     }
 
     /**
@@ -182,6 +188,7 @@ export default class ApiRequester {
             else
             {
                 localStorage.removeItem('access');
+                localStorage.removeItem("user");
                 router.push({name: 'Login'});
             }
         }
@@ -208,12 +215,12 @@ export default class ApiRequester {
             const reponse = await axios.post(this.#BASE_URL + this.#REFRESH_URL, {'refresh': localStorage.getItem('refresh')}, {headers: {Authorization: `Bearer ${localStorage.getItem('access')}`}})
             localStorage.setItem('access', reponse.data.access);
             // access token successfully updated
-            return true
+            return true;
         }
         catch(error)
         {   
              // Authentification error with refresh token invalid or other errors
-            return false   
+            return false;
         }
     }
     
