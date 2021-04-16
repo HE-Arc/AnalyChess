@@ -31,6 +31,12 @@
 								></div>
 							</div>
 
+                            <ArrowDrawingZone
+                                @arrowStart="startArrow"
+                                @arrowUpdate="updateArrow"
+                                @arrowEnd="toggleArrow"
+                            />
+
 							<ChessPiece
 								v-for="piece in pieces"
 								:key="piece.key"
@@ -41,8 +47,8 @@
 							/>
 
                             <Arrow
-                                v-for="(arrow, index) in arrows"
-                                :key="`arrow_${index}`"
+                                v-for="arrow in arrows"
+                                :key="`arrow_${arrow.id}`"
                                 :sFile="arrow.sFile"
                                 :sRow="arrow.sRow"
                                 :eFile="arrow.eFile"
@@ -87,6 +93,7 @@
 <script>
 import ChessPiece from "./ChessPiece.vue";
 import Arrow from "./Arrow.vue";
+import ArrowDrawingZone from "./ArrowDrawingZone.vue";
 import MovesList from "./MovesList.vue";
 import MoveAction from "../tools/MoveAction";
 import CommentPanel from "./CommentPanel.vue";
@@ -108,6 +115,8 @@ const FILE_F = 5;
 const FILE_G = 6;
 const FILE_H = 7;
 
+let currentArrowId = 0;
+
 export default {
 	name: "Board",
 	components: {
@@ -115,13 +124,15 @@ export default {
 		MovesList,
 		CommentPanel,
 		SymbolPanel,
-        Arrow
+        Arrow,
+        ArrowDrawingZone
 	},
 	data() {
 		return {
 			BOARD_SIZE: 8,
 			pieces: [],
             currentArrow: null,
+            arrows: [],
             highlightedCells: [],
 			actions: [],
 			currentMoveIndex: 0,
@@ -137,7 +148,6 @@ export default {
 		this.description = this.game.description;
 		console.log(this.game);
 		for (let { move } of this.game.moves) {
-			//console.log(move)
 			this.actions.push(new MoveAction(move.movements, this.pieces));
 		}
 	},
@@ -204,6 +214,34 @@ export default {
 			}
 			this.$refs.commentPanel.read(index);
 		},
+        startArrow(fileIndex, rowIndex) {
+            this.currentArrow = {
+                sFile: fileIndex,
+                sRow: rowIndex,
+                eFile: fileIndex,
+                eRow: rowIndex,
+                color: "red",
+                id: ++currentArrowId
+            }
+        },
+        updateArrow(fileIndex, rowIndex) {
+            this.currentArrow.eFile = fileIndex;
+            this.currentArrow.eRow = rowIndex;
+        },
+        toggleArrow() {
+            const previousArrowsCount = this.arrows.length;
+
+            this.arrows = this.arrows.filter(a => {
+                return !(this.currentArrow.sFile == a.sFile && this.currentArrow.eFile == a.eFile &&
+                         this.currentArrow.sRow == a.sRow && this.currentArrow.eRow == a.eRow);
+            });
+
+            if(previousArrowsCount == this.arrows.length)
+            {
+                this.arrows.push(this.currentArrow);
+            }
+            this.currentArrow = null;
+        },
 		hasNextMove() {
 			return this.currentMoveIndex < this.actions.length;
 		},

@@ -50,12 +50,9 @@ export default {
             }
             else
             {
-                console.log("what");
                 style += `bottom: ${100. / BOARD_SIZE * this.sRow}%;`;
                 style += `left: ${100. / BOARD_SIZE * this.sFile}%;`;
             }
-
-            console.log(style)
 
             return style;
         }
@@ -76,7 +73,6 @@ export default {
     z-index: 3; /* In top of the piece */
     height: calc(100% / 40);
     transform-origin: center left;
-    transition: width 100ms linear, transform 100ms linear, color 100ms;
 }
 
 .arrow.arrowline::after
