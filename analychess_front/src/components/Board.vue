@@ -219,7 +219,7 @@ export default {
         this.game.description = this.description;
         if (this.id != null)
         {
-          await ApiRequester.getInstance().setRoute(`game/${this.id}`).setParam(this.game).put()
+          await ApiRequester.getInstance().setRoute(`game/${this.id}`).setParam(this.game).patch()
         }
         else
         {

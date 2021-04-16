@@ -19,7 +19,7 @@ export default {
   methods:{
       viewGame()
       {
-        this.$router.push({name: "Game", params: {game_id: this.game.id, game: this.game}})
+        this.$router.push({name: "Game", params: {gameId: this.game.id, game: this.game}})
       }
   }
 }

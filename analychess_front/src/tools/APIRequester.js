@@ -104,7 +104,7 @@ export default class ApiRequester {
      * @author Edouard Goffinet
      * @returns Data of the request's response
      */
-    async put(){
+    async patch(){
         try{
             const response = await axios.patch(this.#BASE_URL + this.#route, this.#params, {headers: {Authorization: `Bearer ${localStorage.getItem('access')}`}});
             return response.data;
@@ -199,7 +199,7 @@ export default class ApiRequester {
                     case 'POST':
                         return await this.post();
                     case 'PUT':
-                        return await this.put();
+                        return await this.patch();
                     case 'DELETE':
                         return await this.delete();
                 }
