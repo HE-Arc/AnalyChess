@@ -47,8 +47,8 @@
 							/>
 
                             <Arrow
-                                v-for="arrow in arrows"
-                                :key="`arrow_${arrow.id}`"
+                                v-for="(arrow, index) in arrows"
+                                :key="`arrow_${index}`"
                                 :sFile="arrow.sFile"
                                 :sRow="arrow.sRow"
                                 :eFile="arrow.eFile"
@@ -115,8 +115,6 @@ const FILE_F = 5;
 const FILE_G = 6;
 const FILE_H = 7;
 
-let currentArrowId = 0;
-
 export default {
 	name: "Board",
 	components: {
@@ -132,7 +130,6 @@ export default {
 			BOARD_SIZE: 8,
 			pieces: [],
             currentArrow: null,
-            arrows: [],
             highlightedCells: [],
 			actions: [],
 			currentMoveIndex: 0,
@@ -156,7 +153,10 @@ export default {
 			return this.game.moves.map((m) => {
 				return m.move.pgnMove;
 			});
-		},
+        },
+        arrows() {
+            return this.game.moves[this.currentMoveIndex].arrows;
+        }
 	},
 	methods: {
 		resetBoard() {
@@ -220,8 +220,7 @@ export default {
                 sRow: rowIndex,
                 eFile: fileIndex,
                 eRow: rowIndex,
-                color: "red",
-                id: ++currentArrowId
+                color: "red"
             }
         },
         updateArrow(fileIndex, rowIndex) {
@@ -231,14 +230,18 @@ export default {
         toggleArrow() {
             const previousArrowsCount = this.arrows.length;
 
-            this.arrows = this.arrows.filter(a => {
+            const newArrows = this.arrows.filter(a => {
                 return !(this.currentArrow.sFile == a.sFile && this.currentArrow.eFile == a.eFile &&
                          this.currentArrow.sRow == a.sRow && this.currentArrow.eRow == a.eRow);
             });
 
-            if(previousArrowsCount == this.arrows.length)
+            if(previousArrowsCount == newArrows.length)
             {
                 this.arrows.push(this.currentArrow);
+            }
+            else
+            {
+                this.game.moves[this.currentMoveIndex].arrows = newArrows;
             }
             this.currentArrow = null;
         },
