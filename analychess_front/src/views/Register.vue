@@ -1,25 +1,68 @@
 <template>
-    <section class="m-5">
+    <section >
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-2 m-2">
-                <h1>Register</h1>
-                <form @submit="try_register" >
+            <div class="col d-flex justify-content-center">
+                <div style="width: 50%">
+                    <img
+                        src="../assets/chesspiece.svg"
+                        class="card-img-top"
+                        alt="chess"
+                    />
+                </div>
+            </div>
+            <div class="col-sm-4 ">
+                <h1 class="m-5">Register</h1>
+                <form @submit="try_register">
                     <label for="input_username">Username</label>
-                    <input class="form-control" type="text" id="input_username" v-model="username" placeholder="Username" required>
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="input_username"
+                        v-model="username"
+                        placeholder="Username"
+                        required
+                    />
                     <label class="mt-5" for="input_password">Password</label>
-                    <input class="form-control" type="password" id="input_password" v-model="password" placeholder="****" required>
-                    <label class="mt-2" for="input_password_conf">Password's confirmation</label>
-                    <input class="form-control" type="password" id="input_password_conf" v-model="conf_password" placeholder="****" required>
+                    <input
+                        class="form-control"
+                        type="password"
+                        id="input_password"
+                        v-model="password"
+                        placeholder="****"
+                        required
+                    />
+                    <label class="mt-2" for="input_password_conf"
+                        >Password's confirmation</label
+                    >
+                    <input
+                        class="form-control"
+                        type="password"
+                        id="input_password_conf"
+                        v-model="conf_password"
+                        placeholder="****"
+                        required
+                    />
                     <label class="mt-5" for="input_email">Email</label>
-                    <input class="form-control" type="email" id="input_email" v-model="email" placeholder="Email" required>
-                    <input class="form-control mt-5" type="submit" id="input_register" value="Register">
+                    <input
+                        class="form-control"
+                        type="email"
+                        id="input_email"
+                        v-model="email"
+                        placeholder="Email"
+                        required
+                    />
+                    <input
+                        class="form-control mt-5"
+                        type="submit"
+                        id="input_register"
+                        value="Register"
+                    />
                 </form>
                 <div class="mt-5">
                     <router-link to="/login">Login</router-link>
                 </div>
             </div>
-            <div class="col-4"></div>
+            <div class="col-2"></div>
         </div>
     </section>
 </template>

@@ -1,6 +1,6 @@
 <template>
-    <section>
-        <h1>Login</h1>
+    <section >
+        <h1 class="m-5">Login</h1>
         <div class="row">
             <div class="col d-flex justify-content-center">
                 <div style="width: 50%">
@@ -11,7 +11,7 @@
                     />
                 </div>
             </div>
-            <div class="col-2 m-5">
+            <div class="col-sm-4 ">
                 <form @submit="try_login" >
                     <label for="input_username">Username</label>
                     <input
