@@ -1,8 +1,15 @@
 <template>
-    <div class="card" style="width: 18rem">
-        <p>Modal</p>
-        <input type="text" v-model="pgn" />
-        <button v-on:click="ok">OK</button>
+
+    <div class="card m-2" style="width: 18rem">
+                            <img
+                        src="../assets/chesspiece.svg"
+                        class="card-img-top"
+                        alt="chess"
+                    />
+                    <div class="card-body">
+
+        <button class="btn btn-primary mt-4 btn-lg" v-on:click="ok">New analysis</button>
+    </div>
     </div>
 </template>
 
