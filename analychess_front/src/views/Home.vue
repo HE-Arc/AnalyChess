@@ -1,11 +1,6 @@
 <template>
-    <section>
+    <section class="m-5">
         <h1>Home</h1>
-        <h6>Test purpose only</h6>
-        <router-link to="/">Home</router-link>
-        <router-link to="/game">Game</router-link>
-        <router-link to="/test">Test</router-link>
-        <router-link to="/logout">Logout</router-link>
         <div class="container">
             <div class="row row-cols-4">
                 <game-thumbnail v-for="game in this.games" v-bind:key="game.id" v-bind:game="game   "/>
