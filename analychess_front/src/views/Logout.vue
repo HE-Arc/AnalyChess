@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="m-5">
         <h1>You've been successfully disconnected !</h1>
         <router-link to="/login">Login</router-link>
     </section>

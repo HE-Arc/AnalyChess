@@ -80,8 +80,12 @@ export default {
 
 <style>
 .list-group-moves{
+    border-radius: 5px;
     max-height: 500px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+}
+.ul {
+    padding-left: 0rem;
 }
 </style>

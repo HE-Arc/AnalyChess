@@ -1,13 +1,13 @@
 <template>
-	<div>
-		<textarea
-			class="comment-text form-control"
-			rows="15"
-			type="text"
-			v-model="comment"
-			v-on:change="write"
-		/>
-	</div>
+    <div>
+        <textarea
+            class="comment-text form-control"
+            rows="15"
+            type="text"
+            v-model="comment"
+            v-on:change="write"
+        />
+    </div>
 </template>
 
 <script>
@@ -39,6 +39,6 @@ export default {
 </script>
 <style>
 .comment-text {
-	width: 300px;
+    width: 300px;
 }
 </style>

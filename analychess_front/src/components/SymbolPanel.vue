@@ -35,7 +35,6 @@
                     <li class="list-group-item"><button tag-id="5" type="button" class="btn btn-sm" v-on:click="addTag">⊕</button>Time trouble</li>
                     <li class="list-group-item"><button tag-id="6" type="button" class="btn btn-sm" v-on:click="addTag">=∞</button>With compensation</li>
                     <li class="list-group-item"><button tag-id="7" type="button" class="btn btn-sm" v-on:click="addTag">∆</button>With the idea</li>
-
                 </ul>
             </div>
         </div>
@@ -94,7 +93,6 @@ export default {
                 e.target.parentElement.classList.add("selected")
             }
             
-            
         },
         addTag(e)
         {
@@ -130,7 +128,6 @@ export default {
                 console.log(i)
                 document.getElementById("tagUl").children[i].classList.add("selected")
             }
-
         },
         remove(ul)
         {

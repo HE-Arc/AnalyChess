@@ -1,36 +1,66 @@
 <template>
-	<div class="m-2 p-5">
-		<div class="row d-flex justify-content-center">
-			<div class="col-md-auto">
-				<label for="inputTitle">Title</label>
-				<input type="text" class="form-control" id="inputTitle"  v-model="title"/>
-				<label for="inputDescription">Description</label>
-				<textarea class="form-control mb-2" id="inputDescription" v-model="description"/>
-				<label for="comment">Comment</label>
-				<CommentPanel
-					ref="commentPanel"
-					:index="currentMoveIndex"
-					v-bind:game="this.game"
-				/>
-				<button type="button" class="btn btn-lg btn-secondary m-2" @click="save">Save</button>
-				<button type="button" class="btn btn-lg btn-secondary m-2" @click="share">Share</button>
-                <button type="button" class="btn btn-lg btn-secondary m-2" @click="del">Delete</button>
-			</div>
-			<div class="col-md-auto d-inline-flex justify-content-center">
-				<div class="row">
-					<div class="d-flex justify-content-center">
-						<div class="board">
-							<div
-								class="board-row"
-								v-for="rowIndex in BOARD_SIZE"
-								:key="rowIndex"
-							>
-								<div
-									class="board-cell"
-									v-for="fileIndex in BOARD_SIZE"
-									:key="fileIndex"
-								></div>
-							</div>
+    <div class="m-2 p-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-auto">
+                <label for="inputTitle">Title</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="inputTitle"
+                    v-model="title"
+                />
+                <label for="inputDescription">Description</label>
+                <textarea
+                    class="form-control mb-2"
+                    id="inputDescription"
+                    v-model="description"
+                />
+                <label for="comment">Comment</label>
+                <CommentPanel
+                    ref="commentPanel"
+                    :index="currentMoveIndex"
+                    v-bind:game="this.game"
+                />
+                <button
+                    type="button"
+                    class="btn btn-lg btn-secondary m-2"
+                    @click="save"
+                >
+                    Save
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-lg btn-secondary m-2"
+                    @click="share"
+                >
+                    Share
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-lg btn-secondary m-2"
+                    @click="del"
+                >
+                    Delete
+                </button>
+            </div>
+            <div class="col-md-auto d-inline-flex justify-content-center">
+                <div class="row">
+                    <div class="d-flex justify-content-center">
+                        <div
+                            class="board"
+                            style="width: 100%; min-width: 400px"
+                        >
+                            <div
+                                class="board-row"
+                                v-for="rowIndex in BOARD_SIZE"
+                                :key="rowIndex"
+                            >
+                                <div
+                                    class="board-cell"
+                                    v-for="fileIndex in BOARD_SIZE"
+                                    :key="fileIndex"
+                                ></div>
+                            </div>
 
                             <ArrowDrawingZone
                                 @arrowStart="startArrow"
@@ -64,33 +94,52 @@
                                 :eRow="currentArrow.eRow"
                                 :color="currentArrow.color"
                             />
-						</div>
-					</div>
-					<div class="row justify-content-center p-2">
-						<div class="d-flex justify-content-center">
-							<button class="btn btn-secondary m-1" @click="firstMove">First</button>
-							<button class="btn btn-secondary m-1" @click="prevMove">Prev</button>
-							<button class="btn btn-secondary m-1" @click="nextMove">Next</button>
-							<button class="btn btn-secondary m-1" @click="lastMove">Last</button>
-						</div>
-					</div>
-				</div>
-			</div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center p-2">
+                        <div class="d-flex justify-content-center">
+                            <button
+                                class="btn btn-secondary m-1"
+                                @click="firstMove"
+                            >
+                                First
+                            </button>
+                            <button
+                                class="btn btn-secondary m-1"
+                                @click="prevMove"
+                            >
+                                Prev
+                            </button>
+                            <button
+                                class="btn btn-secondary m-1"
+                                @click="nextMove"
+                            >
+                                Next
+                            </button>
+                            <button
+                                class="btn btn-secondary m-1"
+                                @click="lastMove"
+                            >
+                                Last
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-			<div class="col-md-auto">
-				<MovesList
-					:pgnMoves="pgnMoves"
-					:selectedMoveIndex="currentMoveIndex"
-					@move="moveAtIndex"
-				/>
-			</div>
-		</div>
-		<div class="row">
-            <SymbolPanel 
-                ref="symPanel"
-                v-bind:game="this.game"/>
-		</div>
-	</div>
+            <div class="col-md-auto">
+                <label class="pb-1">Moves </label>
+                <MovesList
+                    :pgnMoves="pgnMoves"
+                    :selectedMoveIndex="currentMoveIndex"
+                    @move="moveAtIndex"
+                />
+            </div>
+        </div>
+        <div class="row">
+            <SymbolPanel ref="symPanel" v-bind:game="this.game" />
+        </div>
+    </div>
 </template>
 
 <script>
@@ -101,7 +150,7 @@ import MovesList from "./MovesList.vue";
 import MoveAction from "../tools/MoveAction";
 import CommentPanel from "./CommentPanel.vue";
 import SymbolPanel from "./SymbolPanel.vue";
-import ApiRequester from '../tools/APIRequester';
+import ApiRequester from "../tools/APIRequester";
 
 const WHITE = 0;
 const BLACK = 1;
@@ -394,10 +443,10 @@ export default {
 
 .board > .board-row:nth-of-type(2n + 1) > .board-cell:nth-of-type(2n),
 .board > .board-row:nth-of-type(2n) > .board-cell:nth-of-type(2n + 1) {
-	background: Teal;
+    background: Teal;
 }
 textarea {
-	resize: none;
+    resize: none;
 }
 </style>
 
