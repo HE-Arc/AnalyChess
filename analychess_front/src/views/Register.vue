@@ -10,7 +10,7 @@
                     />
                 </div>
             </div>
-            <div class="col-sm-4 ">
+            <div class="col-sm-4 p-5 ">
                 <h1 class="m-5">Register</h1>
                 <form @submit="try_register">
                     <label for="input_username">Username</label>

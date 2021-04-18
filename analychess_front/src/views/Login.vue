@@ -11,7 +11,7 @@
                     />
                 </div>
             </div>
-            <div class="col-sm-4 ">
+            <div class="col-sm-4 p-5">
                 <form @submit="try_login" >
                     <label for="input_username">Username</label>
                     <input
