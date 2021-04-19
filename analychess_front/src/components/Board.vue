@@ -221,7 +221,7 @@ export default {
 			});
         },
         arrows() {
-            return this.game.moves[this.currentMoveIndex].arrows;
+            return this.hasNextMove() ? this.game.moves[this.currentMoveIndex].arrows : [];
         }
 	},
 	methods: {
@@ -305,7 +305,7 @@ export default {
             {
                 this.arrows.push(this.currentArrow);
             }
-            else
+            else if(this.hasNextMove())
             {
                 this.game.moves[this.currentMoveIndex].arrows = newArrows;
             }
