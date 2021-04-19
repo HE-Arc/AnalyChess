@@ -4,7 +4,6 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Home from '../views/Home.vue'
 import GameViewer from '../views/GameViewer.vue'
-import TestApi from '../views/TestAPI.vue'
 import Logout from '../views/Logout.vue'
 import E404 from '../views/E404.vue'
 import Join from '../views/Join.vue'
@@ -38,14 +37,6 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Home,
-        meta: {
-            onlyLogged: true
-        }
-    },
-    {
-        path: '/test',
-        name: 'TestAPI',
-        component: TestApi,
         meta: {
             onlyLogged: true
         }

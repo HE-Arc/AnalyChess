@@ -99,7 +99,6 @@ export default {
             let id = parseInt(e.target.getAttribute("tag-id"));
             if(this.game.moves[this.index].tags.indexOf(id) == -1)
             {
-                console.log(id)
                 this.game.moves[this.index].tags.push(id);
                 e.target.parentElement.classList.add("selected")
             }
@@ -125,7 +124,6 @@ export default {
             }
             for(let i of this.game.moves[this.index].tags)
             {
-                console.log(i)
                 document.getElementById("tagUl").children[i].classList.add("selected")
             }
         },

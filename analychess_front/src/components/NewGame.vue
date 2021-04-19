@@ -1,14 +1,11 @@
 <template>
 
     <div class="card m-2" style="width: 18rem">
-                            <img
-                        src="../assets/chesspiece.svg"
-                        class="card-img-top"
-                        alt="chess"
-                    />
-                    <div class="card-body">
+                        <label for="pgn">PGN of the game</label>
+                        <textarea id="pgn" v-model="pgn" rows="15"></textarea>
+                        <div class="card-body">
 
-        <button class="btn btn-primary mt-4 btn-lg" v-on:click="ok">New analysis</button>
+        <button class="btn btn-primary mt-4 btn-lg" v-on:click="newGame">New analysis</button>
     </div>
     </div>
 </template>
@@ -24,12 +21,22 @@ export default {
         };
     },
     methods: {
-        async ok() {
-            let game = await ApiRequester.getInstance()
+        async newGame() {
+        let game = await ApiRequester.getInstance()
                 .setParam({ pgn: this.pgn })
                 .setRoute("upload_pgn")
                 .post();
+        if(game.moves.length == 0)
+        {
+            this.$toasted.error("Invalid pgn !", {
+            duration: 3500,
+        });
+        }
+        else
+        {
+
             this.$router.push({ name: "Game", params: { game: game } });
+        }
         },
     },
 };

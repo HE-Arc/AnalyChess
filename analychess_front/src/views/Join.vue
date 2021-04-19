@@ -15,14 +15,14 @@ export default {
     mounted: async function () {
         try
         {
-            console.log(this.$route.params.token)
-            let data = await APIRequester.getInstance().setRoute("join?token="+this.$route.params.token).get()
-            console.log(data)
+            await APIRequester.getInstance().setRoute("join?token="+this.$route.params.token).get()
             this.success = true
         }
         catch(e)
         {
-            console.log(e)
+            this.$toasted.error("An unexpected error's occured ! Try again or contact the administrator.", {
+                duration: 3500,
+            });
             this.success = false
         }
     },

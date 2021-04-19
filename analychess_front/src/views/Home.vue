@@ -1,6 +1,6 @@
 <template>
     <section class="m-5">
-        <h1>Home</h1>
+        <h1>Welcome {{this.username}}</h1>
         <div class="container">
             <div class="row row-cols-4">
                 
@@ -31,6 +31,7 @@ export default {
         return {
             games: null,
             newGame: true,
+            username: localStorage.getItem("username")
         };
     },
     created: async function () {

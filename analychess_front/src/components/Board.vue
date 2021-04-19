@@ -201,7 +201,14 @@ export default {
 	mounted() {
 		this.resetBoard();
 		this.id = this.gameId;
-		this.title = this.game.title;
+        try
+        {
+            this.title = this.game.title;
+        }
+        catch(error)
+        {
+            this.$router.push({name: "Home"})
+        }
 		this.description = this.game.description;
 		for (let { move } of this.game.moves) {
 			this.actions.push(new MoveAction(move.movements, this.pieces));
@@ -353,11 +360,15 @@ export default {
 					this.id = data.id;
 				}
 
-				//TODO toast ok
+				this.$toasted.success("Game successfully saved !", {
+                    duration: 3500,
+                });
 			}
 			catch(error)
 			{
-				console.log(error)
+				this.$toasted.error("An unexpected error's occured ! Try again or contact the administrator.", {
+                    duration: 3500,
+                });
 			}
 		},
         async share()
@@ -366,19 +377,23 @@ export default {
             {
                 try{
                     let data = await ApiRequester.getInstance().setRoute("share").setParam({"id": this.id}).post();
-                    console.log(data)
                     navigator.clipboard.writeText(`https://analychess.srvz-webapp.he-arc.ch/#/join/${data.token}`)
-                    //TODO toast copied
+                    this.$toasted.info("Share link copied to clipboard !", {
+                    duration: 3500,
+                });
                 }
                 catch(e)
                 {
-                    console.log(e)
+                    this.$toasted.error("An unexpected error's occured ! Try again or contact the administrator.", {
+                    duration: 3500,
+                });
                 }
             }
             else
             {
-                //TODO toat error
-                console.log("not id")
+                this.$toasted.error("You must save the game before sharing it !", {
+                    duration: 3500,
+                });
             }
         },
         async del()
@@ -392,13 +407,16 @@ export default {
                 }
                 catch(e)
                 {
-                    console.log(e)
+                    this.$toasted.error("An unexpected error's occured ! Try again or contact the administrator.", {
+                    duration: 3500,
+                });
                 }
             }
             else
             {
-                //TODO toat error
-                console.log("not id")
+                this.$toasted.error("Game not saved cannot be delete !", {
+                    duration: 3500,
+                });
             }
         }
 	},

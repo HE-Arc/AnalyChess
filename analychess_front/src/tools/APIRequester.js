@@ -226,7 +226,6 @@ export default class ApiRequester {
      */
     async refresh()
     {
-        console.log('Refreshing');
         try
         {
             const reponse = await axios.post(this.#BASE_URL + this.#REFRESH_URL, {'refresh': localStorage.getItem('refresh')}, {headers: {Authorization: `Bearer ${localStorage.getItem('access')}`}})
