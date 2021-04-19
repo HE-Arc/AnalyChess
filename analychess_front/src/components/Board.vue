@@ -301,14 +301,18 @@ export default {
                          this.currentArrow.sRow == a.sRow && this.currentArrow.eRow == a.eRow);
             });
 
-            if(previousArrowsCount == newArrows.length)
+            if(this.hasNextMove())
             {
-                this.arrows.push(this.currentArrow);
+                if(previousArrowsCount == newArrows.length)
+                {
+                    this.arrows.push(this.currentArrow);
+                }
+                else
+                {
+                    this.game.moves[this.currentMoveIndex].arrows = newArrows;
+                }
             }
-            else if(this.hasNextMove())
-            {
-                this.game.moves[this.currentMoveIndex].arrows = newArrows;
-            }
+
             this.currentArrow = null;
         },
 		hasNextMove() {
